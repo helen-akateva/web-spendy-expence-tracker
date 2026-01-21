@@ -56,13 +56,9 @@ export default function LoginForm() {
               </div>
             )}
 
-            <Image
-              src="/ic_twotone-wallet.svg"
-              width={54}
-              height={54}
-              alt="logo"
-              className={css.imglogo}
-            />
+            <svg width="54" height="54" className={css.imglogo}>
+              <use href="/sprite.svg#icon-logo" />
+            </svg>
             <h1 className={css.formtitle}>Spendy</h1>
 
             <div className={css.formwrapper}>

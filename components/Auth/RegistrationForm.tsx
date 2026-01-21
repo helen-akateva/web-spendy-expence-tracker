@@ -4,7 +4,6 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import css from "./RegistrationForm.module.css";
-import Image from "next/image";
 import { useAuthStore } from "@/lib/store/authStore";
 import { registerValidationSchema } from "@/lib/validations/registerSchema";
 import { authApi } from "@/lib/services/authService";
@@ -78,13 +77,9 @@ export default function RegistrationForm() {
                 </div>
               )}
 
-              <Image
-                src="/ic_twotone-wallet.svg"
-                width={54}
-                height={54}
-                alt="logo"
-                className={css.imglogo}
-              />
+              <svg width="54" height="54" className={css.imglogo}>
+                <use href="/sprite.svg#icon-logo" />
+              </svg>
               <h1 className={css.formtitle}>Spendy</h1>
 
               <div className={css.formwrapper}>
