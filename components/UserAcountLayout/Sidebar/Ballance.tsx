@@ -1,5 +1,5 @@
-const ComponentName = () => {
-  return <div>ComponentName</div>;
-};
+import styles from "./Ballance.module.css";
 
-export default ComponentName;
+export default function Ballance() {
+  return <div className={styles.ballanceContainer}>Ballance</div>;
+}

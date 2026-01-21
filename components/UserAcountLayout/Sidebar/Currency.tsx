@@ -1,5 +1,6 @@
-const ComponentName = () => {
-  return <div>ComponentName</div>;
-};
+import React from "react";
+import styles from "./Currency.module.css";
 
-export default ComponentName;
+export default function Currency() {
+  return <div className={styles.currencyContainer}>Currency</div>;
+}

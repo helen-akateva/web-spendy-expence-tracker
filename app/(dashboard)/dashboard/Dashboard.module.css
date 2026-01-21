@@ -1,0 +1,9 @@
+.mainContainer {
+  padding: 24px 16px;
+}
+
+@media only screen and (min-width: 744px) {
+  .mainContainer {
+    padding: 32px 30px;
+  }
+}

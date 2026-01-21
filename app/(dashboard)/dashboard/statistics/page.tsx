@@ -1,3 +1,3 @@
 export default function StatisticsPage() {
-  return null;
+  return <div>Statistics Page</div>;
 }

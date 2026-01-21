@@ -1,3 +1,3 @@
 export default function CurrencyPage() {
-  return null;
+  return <div>Currency Page</div>;
 }

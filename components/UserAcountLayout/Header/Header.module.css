@@ -1,0 +1,88 @@
+.headerWrapper {
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 8px 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 11px;
+    width: 768px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 11px;
+    width: 1280px;
+    margin: 0 auto;
+  }
+}
+
+.logoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .logoWrapper {
+    width: 104px;
+    height: 53px;
+  }
+}
+
+.logoText {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
+  color: var(--main-white);
+}
+
+.rightPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  display: flex;
+  margin: 20px 0;
+  gap: 12px;
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: 16px;
+  text-align: right;
+  color: var(--main-white);
+}
+
+.divider {
+  width: 1px;
+  height: 30px;
+  background-color: #fcfcfc;
+}
+.exitBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.exitIcon {
+  fill: white;
+}

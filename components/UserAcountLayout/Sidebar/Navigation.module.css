@@ -1,0 +1,116 @@
+.navPanel {
+  padding: 3px;
+  width: 192px;
+  list-style: none;
+  display: flex;
+  gap: 36px;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 744px) {
+  .navPanel {
+    flex-direction: column;
+    gap: 24px;
+    margin: 0;
+  }
+}
+
+@media only screen and (min-width: 744px) {
+  .navPanel {
+    gap: 12px;
+  }
+}
+
+.navIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  fill: #fcfcfc;
+  opacity: 0.5;
+}
+
+@media only screen and (min-width: 744px) {
+  .navIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .navIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.activePath {
+  width: 38px;
+  height: 38px;
+  background-color: white;
+  border-radius: 10px;
+  fill: #355359;
+  opacity: 1;
+}
+
+.navText {
+  display: block;
+  font-family: var(--font-main);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--main-white);
+}
+
+.activeText {
+  font-weight: 700;
+}
+
+@media only screen and (min-width: 744px) {
+  .activePath {
+    width: 24px;
+    height: 24px;
+    fill: #1e2f33;
+  }
+}
+
+@media only screen and (min-width: 744px) {
+  .activePath {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media only screen and (min-width: 744px) {
+  .navContainer {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-radius: 16px;
+    padding: 35px 16px;
+    width: 338px;
+    height: 143px;
+    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .navContainer {
+    border-radius: 16px;
+    padding: 16px 32px;
+    width: 451px;
+    height: 92px;
+  }
+}
+
+@media only screen and (min-width: 744px) {
+  .navPanelItem {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}
