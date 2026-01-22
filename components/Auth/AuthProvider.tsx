@@ -7,6 +7,7 @@ import { Loader } from "../Loader/Loader";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const setUser = useAuthStore((s) => s.setUser);
+
   const logout = useAuthStore((s) => s.logout);
 
   const [checking, setChecking] = useState(true);
