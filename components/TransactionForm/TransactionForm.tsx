@@ -7,6 +7,7 @@ import { useRef, useState, useEffect } from "react";
 
 import css from "./TransactionForm.module.css";
 import CategorySelect from "../CategorySelect/CategorySelect";
+import { fetchCategories } from "@/lib/api/category";
 
 export interface TransactionFormValues {
   type: "income" | "expense";
@@ -49,6 +50,10 @@ export default function TransactionForm({
   const datePickerRef = useRef<DatePicker>(null);
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    fetchCategories({ type: "income" }).then((a) => console.log(a));
+  }, []);
+
   return (
     <Formik<TransactionFormValues>
       initialValues={initialValues}
@@ -63,16 +68,63 @@ export default function TransactionForm({
     >
       {({ values, setFieldValue, isSubmitting, errors, touched }) => (
         <Form className={css.form}>
-          <div className={css.formGrop}>
-            <label>
-              <Field type="radio" name="type" value="expense" />
-              Expense
-            </label>
-            <label>
-              <Field type="radio" name="type" value="income" />
-              Income
+          <div className={css.toggleWrapper}>
+            <label className={css.toggle}>
+              <span
+                className={`${css.label} ${
+                  values.type === "income" ? css.active : ""
+                }`}
+              >
+                Income
+              </span>
+
+              <Field
+                type="checkbox"
+                name="type"
+                checked={values.type === "expense"}
+                onChange={() =>
+                  setFieldValue(
+                    "type",
+                    values.type === "income" ? "expense" : "income",
+                  )
+                }
+                className={css.hiddenInput}
+              />
+
+              <span className={css.track}>
+                <span
+                  className={`${css.thumb} ${
+                    values.type === "expense" ? css.expense : css.income
+                  }`}
+                >
+                  <svg
+                    className={`${css.iconThumb} ${css.minus}`}
+                    width="20"
+                    height="20"
+                  >
+                    <use href="/sprite.svg#icon-minus" />
+                  </svg>
+
+                  <svg
+                    className={`${css.iconThumb} ${css.plus}`}
+                    width="20"
+                    height="20"
+                  >
+                    <use href="/sprite.svg#icon-plus" />
+                  </svg>
+                </span>
+              </span>
+
+              <span
+                className={`${css.label} ${
+                  values.type === "expense" ? css.active : ""
+                }`}
+              >
+                Expense
+              </span>
             </label>
           </div>
+
           {values.type === "expense" && (
             <div style={{ width: "100%", paddingBottom: "12px" }}>
               <Field
@@ -138,7 +190,7 @@ export default function TransactionForm({
                 className={css.iconButton}
                 onClick={() => setIsOpen((prev) => !prev)}
               >
-                <svg className={css.icon} width="24" height="24" >
+                <svg className={css.icon} width="24" height="24">
                   <use href="/sprite.svg#icon-date-range" />
                 </svg>
               </button>

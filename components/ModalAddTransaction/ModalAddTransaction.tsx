@@ -25,7 +25,7 @@ export default function ModalAddTransaction({ onClose }: Props) {
   };
 
   return (
-    <Modal onClose={onClose} showCloseButton>
+    <Modal className={css.modal} onClose={onClose} showCloseButton>
       <h2 className={css.h2}>Add transaction</h2>
       <TransactionForm
         initialValues={initialValues}

@@ -59,17 +59,14 @@
   color: #3b5d63;
 }
 
-/* ❌ помилка */
 .inputError {
   border: 1px solid #b20202;
 }
 
-/* ✅ валідне поле */
 .inputSuccess {
   border: 1px solid #0b6016;
 }
 
-/* текст помилки */
 .errorText {
   padding-top: 4px;
   color: #b20202;
@@ -99,4 +96,88 @@
   border: none;
   cursor: pointer;
   padding: 0;
+}
+
+.toggleWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 16px;
+  color: #081222;
+
+  transition: color 0.3s ease;
+}
+
+.label.active {
+  color: #081222;
+}
+
+.track {
+  width: 80px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 30px;
+
+  position: relative;
+}
+
+.thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: absolute;
+  top: -2px;
+  left: 0;
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.income {
+  background-color: #dfad3f;
+  transform: translateX(0);
+}
+
+.expense {
+  background-color: #b20202;
+  transform: translateX(40px);
+}
+
+.iconThumb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.minus {
+  opacity: 1;
+}
+
+.plus {
+  opacity: 0;
+}
+
+.expense .minus {
+  opacity: 0;
+}
+
+.expense .plus {
+  opacity: 1;
 }

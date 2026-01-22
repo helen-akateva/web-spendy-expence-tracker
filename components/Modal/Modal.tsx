@@ -6,6 +6,7 @@ interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
   showCloseButton?: boolean;
+  className?: string;
 }
 
 export default function Modal({
