@@ -15,32 +15,3 @@
   font-size: 30px;
   text-align: center;
 }
-
-.actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 12px;
-  margin-bottom: 24px;
-}
-
-.buttonCancel {
-  border: 1px solid #081222;
-  width: 100%;
-  max-width: 271px;
-  background-color: #508f8c;
-  font-weight: 500;
-  font-size: 18px;
-  text-align: center;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 11px 0;
-  cursor: pointer;
-}
-
-@media only screen and (min-width: 768px) {
-  .buttonCancel {
-    max-width: 410px;
-  }
-}

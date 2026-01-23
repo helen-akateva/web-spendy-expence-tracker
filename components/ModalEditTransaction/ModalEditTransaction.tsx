@@ -4,6 +4,7 @@ import TransactionForm, {
 } from "@/components/TransactionForm/TransactionForm";
 
 import css from "./ModalEditTransaction.module.css";
+import CancelButton from "../CancelButton/CancelButton";
 
 interface Props {
   transaction: {
@@ -41,11 +42,8 @@ export default function ModalEditTransaction({ transaction, onClose }: Props) {
         submitText="Save"
         onSubmit={handleSubmit}
       />
-      <div className={css.actions}>
-        <button className={css.buttonCancel} onClick={onClose}>
-          Cancel
-        </button>
-      </div>
+
+      <CancelButton onClick={onClose} />
     </Modal>
   );
 }

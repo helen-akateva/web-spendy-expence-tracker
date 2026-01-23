@@ -1,5 +1,5 @@
-.button {
-  background-color: #508f8c;
+.buttonAdd {
+  background-color: var(--main-light-green);
   width: 56px;
   height: 56px;
   display: flex;
@@ -11,5 +11,17 @@
 .icon {
   width: 25px;
   height: 25px;
-  color: #000;
+  color: var(--main-black);
+}
+
+.buttonDelete {
+  font-weight: 400;
+  font-size: 14px;
+  text-align: center;
+  color: var(--main-white);
+  border: 1px solid var(--main-white);
+  border-radius: 8px;
+  padding: 4px 12px;
+  width: 67px;
+  height: 25px;
 }

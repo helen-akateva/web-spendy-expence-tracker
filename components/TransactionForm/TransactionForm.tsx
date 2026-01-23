@@ -6,8 +6,9 @@ import DatePicker from "react-datepicker";
 import { useRef, useState, useEffect } from "react";
 
 import css from "./TransactionForm.module.css";
-import CategorySelect from "../CategorySelect/CategorySelect";
-import { fetchCategories } from "@/lib/api/category";
+import CategorySelect, { Option } from "../CategorySelect/CategorySelect";
+import { Category, fetchCategories } from "@/lib/api/category";
+import Toggle from "../Toggle/Toggle";
 
 export interface TransactionFormValues {
   type: "income" | "expense";
@@ -22,12 +23,6 @@ interface Props {
   submitText: string;
   onSubmit: (values: TransactionFormValues) => Promise<void>;
 }
-
-const categoryOptions = [
-  { value: "Products", label: "Products" },
-  { value: "Car", label: "Car" },
-  { value: "Education", label: "Education" },
-];
 
 const validationSchema = Yup.object({
   type: Yup.string().oneOf(["income", "expense"]).required(),
@@ -50,8 +45,14 @@ export default function TransactionForm({
   const datePickerRef = useRef<DatePicker>(null);
   const [isOpen, setIsOpen] = useState(false);
 
+  const [categoryOptions, setCategoryOptions] = useState<Option[]>([]);
+
   useEffect(() => {
-    fetchCategories({ type: "income" }).then((a) => console.log(a));
+    fetchCategories({ type: "expense" }).then((categories) =>
+      setCategoryOptions(
+        categories.map((cat) => ({ value: cat._id, label: cat.name })),
+      ),
+    );
   }, []);
 
   return (
@@ -68,62 +69,10 @@ export default function TransactionForm({
     >
       {({ values, setFieldValue, isSubmitting, errors, touched }) => (
         <Form className={css.form}>
-          <div className={css.toggleWrapper}>
-            <label className={css.toggle}>
-              <span
-                className={`${css.label} ${
-                  values.type === "income" ? css.active : ""
-                }`}
-              >
-                Income
-              </span>
-
-              <Field
-                type="checkbox"
-                name="type"
-                checked={values.type === "expense"}
-                onChange={() =>
-                  setFieldValue(
-                    "type",
-                    values.type === "income" ? "expense" : "income",
-                  )
-                }
-                className={css.hiddenInput}
-              />
-
-              <span className={css.track}>
-                <span
-                  className={`${css.thumb} ${
-                    values.type === "expense" ? css.expense : css.income
-                  }`}
-                >
-                  <svg
-                    className={`${css.iconThumb} ${css.minus}`}
-                    width="20"
-                    height="20"
-                  >
-                    <use href="/sprite.svg#icon-minus" />
-                  </svg>
-
-                  <svg
-                    className={`${css.iconThumb} ${css.plus}`}
-                    width="20"
-                    height="20"
-                  >
-                    <use href="/sprite.svg#icon-plus" />
-                  </svg>
-                </span>
-              </span>
-
-              <span
-                className={`${css.label} ${
-                  values.type === "expense" ? css.active : ""
-                }`}
-              >
-                Expense
-              </span>
-            </label>
-          </div>
+          <Toggle
+            value={values.type}
+            onChange={(value) => setFieldValue("type", value)}
+          />
 
           {values.type === "expense" && (
             <div style={{ width: "100%", paddingBottom: "12px" }}>
@@ -166,11 +115,12 @@ export default function TransactionForm({
               <DatePicker
                 ref={datePickerRef}
                 open={isOpen}
+                portalId="root-datepicker"
                 dateFormat="dd.MM.yyyy"
                 customInput={<input className={css.input} />}
                 onClickOutside={() => setIsOpen(false)}
                 onSelect={() => setIsOpen(false)}
-                className={`${css.input} ${css.fixedWidth} ${
+                className={`${css.input} ${css.fixedWidth}  ${
                   touched.date
                     ? errors.date
                       ? css.inputError
@@ -187,7 +137,7 @@ export default function TransactionForm({
               />
               <button
                 type="button"
-                className={css.iconButton}
+                className={css.iconDate}
                 onClick={() => setIsOpen((prev) => !prev)}
               >
                 <svg className={css.icon} width="24" height="24">

@@ -3,6 +3,7 @@ import TransactionForm, {
   TransactionFormValues,
 } from "@/components/TransactionForm/TransactionForm";
 import css from "./ModalAddTransaction.module.css";
+import CancelButton from "../CancelButton/CancelButton";
 
 interface Props {
   onClose: () => void;
@@ -33,11 +34,7 @@ export default function ModalAddTransaction({ onClose }: Props) {
         onSubmit={handleSubmit}
       />
 
-      <div className={css.actions}>
-        <button className={css.buttonCancel} onClick={onClose}>
-          Cancel
-        </button>
-      </div>
+      <CancelButton onClick={onClose} />
     </Modal>
   );
 }

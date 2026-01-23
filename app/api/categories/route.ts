@@ -1,8 +1,7 @@
-import { nextApi } from "@/lib/api/api";
 import { isAxiosError } from "axios";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-
+import { spendiApi } from "../api";
 
 export async function GET(req: Request) {
   try {
@@ -10,7 +9,7 @@ export async function GET(req: Request) {
     const url = new URL(req.url);
     const params = Object.fromEntries(url.searchParams.entries());
 
-    const res = await nextApi("/categories", {
+    const res = await spendiApi("categories", {
       headers: {
         Cookie: cookieStore.toString(),
       },

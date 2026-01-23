@@ -1,0 +1,42 @@
+.content {
+  text-align: center;
+  padding: 32px 16px 0 16px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  color: var(--main-black);
+  font-family: "Poppins", sans-serif;
+}
+
+.p {
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: var(--main-black);
+  padding: 25px 0;
+}
+
+.delete {
+  width: 100%;
+  padding: 11px 14px 9px 14px;
+  font-weight: 500;
+  font-size: 18px;
+
+  background-color: var(--main-red);
+  color: var(--main-white);
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  max-width: 271px;
+}
+
+@media only screen and (min-width: 768px) {
+  .delete {
+    max-width: 410px;
+  }
+}

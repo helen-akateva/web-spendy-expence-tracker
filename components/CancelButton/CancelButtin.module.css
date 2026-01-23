@@ -1,0 +1,35 @@
+.button {
+  border: 1px solid var(--main-black);
+  width: 100%;
+  max-width: 271px;
+  background-color: var(--main-light-green);
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 11px 0;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) {
+  .button {
+    max-width: 410px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 12px;
+  padding-bottom: 24px;
+}
+
+@media only screen and (min-width: 768px) {
+  .actions {
+    padding-top: 21px;
+    padding-bottom: 46px;
+  }
+}

@@ -1,0 +1,83 @@
+.toggleWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 16px;
+  color: #081222;
+  transition: color 0.3s ease;
+}
+
+.labelLight {
+  color: var(--main-white);
+}
+
+.track {
+  width: 80px;
+  height: 40px;
+  background-color: var(--main-white);
+  border-radius: 30px;
+
+  position: relative;
+}
+
+.thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: absolute;
+  top: -2px;
+  left: 0;
+
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.income {
+  background-color: var(--main-yellow);
+  transform: translateX(0);
+}
+
+.expense {
+  background-color: var(--main-red);
+  transform: translateX(40px);
+}
+
+.iconThumb {
+  color: var(--main-white);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.minus {
+  opacity: 1;
+}
+
+.plus {
+  opacity: 0;
+}
+
+.expense .minus {
+  opacity: 0;
+}
+
+.expense .plus {
+  opacity: 1;
+}

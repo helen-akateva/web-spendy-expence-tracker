@@ -3,7 +3,7 @@
 import Select from "react-select";
 import { FieldProps } from "formik";
 
-interface Option {
+export interface Option {
   value: string;
   label: string;
 }
@@ -31,6 +31,8 @@ export default function CategorySelect({
       onChange={(option) => form.setFieldValue(field.name, option?.value)}
       onBlur={() => form.setFieldTouched(field.name, true)}
       placeholder="Select category"
+      menuPortalTarget={document.body}
+      menuPosition="fixed"
       styles={{
         container: (base) => ({
           ...base,
@@ -52,7 +54,11 @@ export default function CategorySelect({
           cursor: "pointer",
 
           "&:hover": {
-            border: hasError ? "1px solid #b20202" : "1px solid #081222",
+            border: hasError
+              ? "1px solid #b20202"
+              : hasSuccess
+                ? "1px solid #0b6016"
+                : "1px solid #081222",
           },
         }),
         valueContainer: (base) => ({
@@ -111,6 +117,11 @@ export default function CategorySelect({
 
           marginTop: "0",
           zIndex: 20,
+        }),
+
+        menuPortal: (base) => ({
+          ...base,
+          zIndex: 9999,
         }),
 
         option: (base) => ({
