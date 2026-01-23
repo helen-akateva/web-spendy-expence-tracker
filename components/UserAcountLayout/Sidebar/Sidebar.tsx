@@ -8,6 +8,7 @@ import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function Sidebar() {
   const isTablet = useMediaQuery("(min-width: 744px)");
+  const isDesktop = useMediaQuery("(min-width: 1280px)");
 
   return (
     <aside className={styles.sidebarContainer}>
@@ -15,7 +16,7 @@ export default function Sidebar() {
       {isTablet && (
         <>
           <Ballance />
-          <Currency />
+          {!isDesktop && <Currency />}
         </>
       )}
     </aside>

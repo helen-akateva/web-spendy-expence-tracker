@@ -1,0 +1,30 @@
+.stat-dashboard-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.stat-dasboard-select {
+  border: 1px solid var(--main-white);
+  border-radius: 8px;
+  padding: 10px 14px;
+  width: 122px;
+  height: 44px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--main-white);
+}
+
+@media only screen and (min-width: 768px) {
+  .stat-dasboard-select {
+    width: 148px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .stat-dasboard-select {
+    width: 187px;
+  }
+}

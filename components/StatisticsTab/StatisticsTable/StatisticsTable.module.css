@@ -1,0 +1,79 @@
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  padding: 12px 16px;
+  height: 43px;
+  background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+}
+
+.table-header-text {
+  display: block;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--main-white);
+}
+
+.table-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--main-white);
+  padding: 14px 2px;
+  border-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--main-white);
+  border-bottom-color: color-mix(in srgb, var(--main-white) 20%, transparent);
+}
+
+.category-color {
+  width: 24px;
+  height: 24px;
+  background-color: orange;
+  margin-right: 10px;
+}
+
+.category-name {
+  margin-right: auto;
+}
+
+.table-list-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 2px;
+}
+
+.table-list-total-type {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--main-white);
+  padding: 0 16px;
+}
+
+.table-list-total-amount-expense {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: right;
+  color: var(--main-light-red);
+  padding: 0 16px;
+}
+.table-list-total-amount-income {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: right;
+  color: var(--chart-green);
+  padding: 0 16px;
+}

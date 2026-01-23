@@ -1,3 +1,12 @@
+import StatisticsTab from "@/components/StatisticsTab/StatisticsTab";
+import { StatisticsProvider } from "@/lib/context/StatisticsContext";
+
 export default function StatisticsPage() {
-  return <div>Statistics Page</div>;
+  return (
+    <StatisticsProvider>
+      <section>
+        <StatisticsTab />
+      </section>
+    </StatisticsProvider>
+  );
 }

@@ -1,0 +1,36 @@
+.stat-tab-container {
+  border-radius: 16px;
+  padding: 16px 12px;
+  width: 288px;
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  margin: 0 auto;
+  margin-top: 33px;
+}
+
+@media only screen and (min-width: 768px) {
+  .stat-tab-container {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    padding: 16px;
+    width: 698px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .stat-tab-container {
+    gap: 16px;
+    margin-top: 0;
+    min-height: 582px;
+    width: 757px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .chart-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 288px;
+    align-items: center;
+  }
+}

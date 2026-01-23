@@ -1,0 +1,58 @@
+.togle-container {
+  display: flex;
+  width: 248px;
+  height: 44px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--main-white);
+  margin-bottom: 32px;
+}
+
+.togle-text {
+  display: block;
+  margin-top: 10px;
+}
+
+.togle-box {
+  border-radius: 30px;
+  width: 80px;
+  height: 40px;
+  margin: 0 20px 0 24px;
+  background: var(--main-white);
+}
+
+.togle-circle {
+  position: relative;
+  top: -2px;
+  width: 44px;
+  height: 44px;
+  border-radius: 100%;
+  background-color: var(--main-yellow);
+  transition: all 0.25s ease;
+}
+
+.line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 2px;
+  background: white;
+  transform: translate(-50%, -50%);
+  transition: all 0.25s ease;
+}
+
+.vertical {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.expense-active {
+  .vertical {
+    opacity: 0;
+    transition: all 0.25s ease;
+  }
+  background-color: var(--main-red);
+  transform: translate(40px, 0);
+  transition: all 0.25s ease;
+}
