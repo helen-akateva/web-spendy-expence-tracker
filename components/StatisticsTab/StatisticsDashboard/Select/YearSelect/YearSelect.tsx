@@ -1,13 +1,11 @@
+"use client";
+
 import { useState, useRef, useEffect } from "react";
 import css from "../Select.module.css";
+import { useStatistics } from "../../../../../lib/context/StatisticsContext";
 
-interface YearSelectProps {
-  value: number;
-  onChange: (year: number) => void;
-  years: number[];
-}
-
-export function YearSelect({ value, onChange, years }: YearSelectProps) {
+export function YearSelect() {
+  const { year: value, setYear: onChange, yearsRange: years } = useStatistics();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -38,20 +36,22 @@ export function YearSelect({ value, onChange, years }: YearSelectProps) {
       </button>
 
       <div className={`${css.select__dropdown} ${isOpen ? css.open : ""}`}>
-        {years.map((year) => (
-          <div
-            key={year}
-            className={`${css.select__item} ${
-              value === year ? css.active : ""
-            }`}
-            onClick={() => {
-              onChange(year);
-              setIsOpen(false);
-            }}
-          >
-            {year}
-          </div>
-        ))}
+        {years
+          .sort((a, b) => b - a)
+          .map((year) => (
+            <div
+              key={year}
+              className={`${css.select__item} ${
+                value === String(year) ? css.active : ""
+              }`}
+              onClick={() => {
+                onChange(String(year)); // контекст зберігає рік як string
+                setIsOpen(false);
+              }}
+            >
+              {year}
+            </div>
+          ))}
       </div>
     </div>
   );

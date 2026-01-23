@@ -58,12 +58,22 @@
   font-weight: 600;
   font-size: 14px;
   color: var(--main-white);
+  padding: 0 16px;
 }
 
-.table-list-total-amount {
+.table-list-total-amount-expense {
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 14px;
   text-align: right;
   color: var(--main-light-red);
+  padding: 0 16px;
+}
+.table-list-total-amount-income {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: right;
+  color: var(--chart-green);
+  padding: 0 16px;
 }

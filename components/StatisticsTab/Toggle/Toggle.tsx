@@ -1,18 +1,21 @@
 "use client";
 
-import { useState } from "react";
 import css from "./Toggle.module.css";
+import { useStatistics } from "../../../lib/context/StatisticsContext";
 
 export default function Toggle() {
-  const [isExpense, setExpense] = useState<boolean>(true);
+  const { toggle, setToggle } = useStatistics();
+
+  const isExpense = toggle === "expense";
 
   const handleBtnClick = () => {
-    setExpense(!isExpense);
+    setToggle(isExpense ? "income" : "expense");
   };
 
   return (
     <div className={css["togle-container"]}>
       <p className={css["togle-text"]}>Income</p>
+
       <div className={css["togle-box"]}>
         <button
           className={
@@ -26,6 +29,7 @@ export default function Toggle() {
           <span className={`${css["line"]} ${css["horizontal"]}`}></span>
         </button>
       </div>
+
       <p className={css["togle-text"]}>Expense</p>
     </div>
   );

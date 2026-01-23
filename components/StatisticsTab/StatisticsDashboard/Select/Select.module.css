@@ -81,7 +81,7 @@
 }
 
 .select__item.active {
-  background: var(--accent-light);
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
   color: var(--accent);
   font-weight: 600;
 }

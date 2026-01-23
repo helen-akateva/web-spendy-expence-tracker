@@ -1,5 +1,8 @@
+"use client";
+
 import { useState, useRef, useEffect } from "react";
 import css from "../Select.module.css";
+import { useStatistics } from "../../../../../lib/context/StatisticsContext";
 
 export type Month =
   | "January"
@@ -14,11 +17,6 @@ export type Month =
   | "October"
   | "November"
   | "December";
-
-interface MonthSelectProps {
-  value: Month;
-  onChange: (month: Month) => void;
-}
 
 const months: Month[] = [
   "January",
@@ -35,7 +33,9 @@ const months: Month[] = [
   "December",
 ];
 
-export function MonthSelect({ value, onChange }: MonthSelectProps) {
+export function MonthSelect() {
+  const { month: value, setMonth: onChange } = useStatistics();
+
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 

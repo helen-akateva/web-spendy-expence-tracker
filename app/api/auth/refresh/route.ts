@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const BACKEND_URL = process.env.BACKEND_API_URL;
 
 async function handleRefresh() {
   const { data, headers } = await axios.post(
