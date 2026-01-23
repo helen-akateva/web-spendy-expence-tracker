@@ -1,47 +1,33 @@
-import axios from "axios";
 import { NextResponse } from "next/server";
+import { spendiApi } from "../../api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-async function handleRefresh() {
-  const { data, headers } = await axios.post(
-    `${BACKEND_URL}/auth/refresh`,
-    {},
-    { withCredentials: true },
-  );
-
-  const response = NextResponse.json(
-    {
-      id: data._id || data.id,
-      email: data.email,
-      name: data.name,
-      balance: data.balance ?? 0,
-    },
-    { status: 200 },
-  );
-
-  const setCookie = headers["set-cookie"];
-  if (setCookie) {
-    response.headers.set("set-cookie", setCookie.join(","));
-  }
-
-  return response;
-}
+// const BACKEND_URL = process.env.API_BASE_URL;
 
 export async function POST() {
   try {
-    return await handleRefresh();
-  } catch {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
-  }
-}
+    const { data, headers } = await spendiApi.post("/auth/refresh", {});
 
-export async function GET() {
-  try {
-    return await handleRefresh();
+    const response = NextResponse.json(
+      {
+        id: data._id || data.id,
+        email: data.email,
+        name: data.name,
+        balance: data.balance ?? 0,
+      },
+      { status: 200 },
+    );
+
+    const cookies = headers["set-cookie"];
+    if (cookies) {
+      cookies.forEach((cookie) => {
+        response.headers.append("set-cookie", cookie);
+      });
+    }
+
+    return response;
   } catch {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }

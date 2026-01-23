@@ -29,18 +29,18 @@ export const useAuthStore = create<AuthStore>()(
 
       // Встановити користувача та токен при логіні/реєстрації
       setAuth: (user: UserData, token: string) => {
-        set(() => ({ 
-          user, 
+        set(() => ({
+          user,
           token,
-          isAuthenticated: true 
+          isAuthenticated: true,
         }));
       },
 
       // Оновити дані користувача
       setUser: (user: UserData) => {
-        set(() => ({ 
-          user, 
-          isAuthenticated: true 
+        set(() => ({
+          user,
+          isAuthenticated: true,
         }));
       },
 
@@ -53,21 +53,21 @@ export const useAuthStore = create<AuthStore>()(
 
       // Повне очищення при logout
       logout: () => {
-        set(() => ({ 
-          user: null, 
+        set(() => ({
+          user: null,
           token: null,
-          isAuthenticated: false 
+          isAuthenticated: false,
         }));
         // Очищаємо localStorage
-        localStorage.removeItem('auth-storage');
+        localStorage.removeItem("auth-storage");
       },
 
       // Альтернативний метод очищення (deprecated)
       clearAuth: () => {
-        set(() => ({ 
-          user: null, 
+        set(() => ({
+          user: null,
           token: null,
-          isAuthenticated: false 
+          isAuthenticated: false,
         }));
       },
     }),
@@ -79,6 +79,6 @@ export const useAuthStore = create<AuthStore>()(
         user: state.user,
         token: state.token,
       }),
-    }
-  )
+    },
+  ),
 );

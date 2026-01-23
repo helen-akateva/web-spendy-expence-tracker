@@ -1,22 +1,17 @@
-import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
+import { spendiApi } from "../../api";
+import { AxiosError } from "axios";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+// const BACKEND_URL = process.env.API_BASE_URL;
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const { data, headers } = await axios.post(
-      `${BACKEND_URL}/auth/login`,
-      body,
-      {
-        withCredentials: true,
-      },
-    );
+    const { data, headers } = await spendiApi.post("/auth/login", body);
 
     const response = NextResponse.json(
       {
@@ -28,26 +23,19 @@ export async function POST(req: NextRequest) {
       { status: 200 },
     );
 
-    const setCookie = headers["set-cookie"];
-    if (setCookie) {
-      response.headers.set("set-cookie", setCookie.join(","));
+    const cookies = headers["set-cookie"];
+    if (cookies) {
+      cookies.forEach((cookie) => {
+        response.headers.append("set-cookie", cookie);
+      });
     }
 
     return response;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      return NextResponse.json(
-        {
-          message:
-            error.response?.data?.message || error.message || "Login failed",
-        },
-        { status: error.response?.status || 500 },
-      );
-    }
-  }
+  } catch (err) {
+    const error = err as AxiosError;
+    const status = error.response?.status ?? 500;
+    const data = error.response?.data ?? { message: "Internal proxy error" };
 
-  return NextResponse.json(
-    { message: "Internal server error" },
-    { status: 500 },
-  );
+    return NextResponse.json(data, { status });
+  }
 }
