@@ -1,0 +1,216 @@
+/*? Mobile */
+
+.transactionPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.transactionTable {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 290px;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* left color line */
+.transactionTable::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #dfad3f;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.greenBefore::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: #24cca7;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.thead {
+  text-align: left;
+  padding-left: 21px;
+}
+
+.tbody {
+  text-align: right;
+  padding-right: 21px;
+}
+
+.tr {
+  display: flex;
+  flex-direction: column;
+}
+
+.th,
+.td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  font-weight: 600;
+  font-size: 16px;
+  color: #fcfcfc;
+}
+
+.tabletBtnDelete {
+  display: none;
+}
+
+.btnDelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+
+  font-weight: 400;
+  font-size: 14px;
+  color: #fcfcfc;
+  border: 1px solid #fcfcfc;
+  border-radius: 8px;
+
+  width: 67px;
+  height: 25px;
+  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+
+  cursor: pointer;
+}
+
+/*? Mobile */
+
+/*! Tablet */
+
+@media only screen and (min-width: 768px) {
+  .tableWrapper {
+    position: relative;
+    max-height: 540px;
+    overflow-y: auto;
+  }
+
+  .transactionTable {
+    min-width: 700px;
+    min-height: 540px;
+    max-height: 540px;
+    flex-direction: column;
+    border-radius: 16px;
+    justify-content: flex-start;
+
+    overflow-y: auto;
+  }
+
+  .tr {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .btnDelete {
+    display: none;
+  }
+
+  .tbody {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .transactionTable::before,
+  .greenBefore::before {
+    display: none;
+  }
+
+  .thead {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .th,
+  .td {
+    display: grid;
+    grid-template-columns: 95px;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .td {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .th .btnDelete {
+    display: none;
+  }
+
+  .td .btnDelete {
+    display: flex;
+  }
+
+  .colorize {
+    border-radius: 16px;
+
+    background: linear-gradient(
+      180deg,
+      rgba(41, 64, 69, 1) 0%,
+      rgba(30, 47, 51, 1) 100%
+    );
+
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  .scroll::-webkit-scrollbar {
+    background-color: #1e2f33;
+  }
+
+  .scroll::-webkit-scrollbar-thumb {
+    background-color: #508f8c;
+  }
+}
+
+/*! Tablet */
+
+/* * Desktop */
+
+/* * ? Desktop */
+
+/* add btn style */
+
+.button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: #508f8c;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .button {
+    position: absolute;
+  }
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  color: #000;
+}

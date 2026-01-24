@@ -27,10 +27,10 @@
   --font-family: "Inter", sans-serif;
   --second-family: "Poppins", sans-serif;
 
-    /* Z-index */
-      --z-dropdown: 1000;
-      --z-modal: 1100;
-      --z-tooltip: 1200;
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-modal: 1100;
+  --z-tooltip: 1200;
 }
 html,
 body {
@@ -91,7 +91,6 @@ img {
   padding: 0 16px;
 }
 
-
 /* Styles for Tablet devices */
 
 @media only screen and (max-width: 374px) {
@@ -113,7 +112,6 @@ img {
     max-width: 1280px;
     padding: 0 24px;
   }
-
 }
 
 .visually-hidden {
