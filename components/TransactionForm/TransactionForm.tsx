@@ -7,7 +7,7 @@ import { useRef, useState, useEffect } from "react";
 
 import css from "./TransactionForm.module.css";
 import CategorySelect, { Option } from "../CategorySelect/CategorySelect";
-import { Category, fetchCategories } from "@/lib/api/category";
+import { fetchCategories } from "@/lib/api/category";
 import Toggle from "../Toggle/Toggle";
 
 export interface TransactionFormValues {
@@ -28,13 +28,18 @@ const validationSchema = Yup.object({
   type: Yup.string().oneOf(["income", "expense"]).required(),
   amount: Yup.number()
     .required("Amount is required")
-    .positive("Amount must be greater than 0"),
-  date: Yup.date().required(),
+    .min(1, "Amount must be at least 1")
+    .max(1000000, "Amount must be at most 1 000 000")
+    .typeError("Amount must be a number"),
+  date: Yup.date().required("Date is required"),
   category: Yup.string().when("type", {
     is: "expense",
     then: (schema) => schema.required("Category is required"),
   }),
-  comment: Yup.string().max(100),
+  comment: Yup.string()
+    .min(2, "Comment must be at least 2 characters")
+    .max(192, "Comment must be at most 192 characters")
+    .optional(),
 });
 
 export default function TransactionForm({
