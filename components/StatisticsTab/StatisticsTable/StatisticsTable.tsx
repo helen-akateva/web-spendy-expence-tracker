@@ -27,8 +27,8 @@ export default function StatisticsTable({ summary }: StatisticsTableProps) {
   );
 
   const total = isExpense
-    ? summary.totals.totalExpense
-    : summary.totals.totalIncome;
+    ? summary.totals.totalExpense.toFixed(2)
+    : summary.totals.totalIncome.toFixed(2);
 
   return (
     <div>
@@ -45,7 +45,7 @@ export default function StatisticsTable({ summary }: StatisticsTableProps) {
               style={{ backgroundColor: categoryColors[c.category] }}
             ></div>
             <p className={css["category-name"]}>{c.category}</p>
-            <p>{c.total}</p>
+            <p>{c.total.toFixed(2)}</p>
           </li>
         ))}
 

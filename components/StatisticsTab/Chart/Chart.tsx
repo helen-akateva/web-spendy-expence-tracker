@@ -13,7 +13,7 @@ export default function Chart({
   isAnimationActive?: boolean;
   defaultIndex?: TooltipIndex;
 }) {
-  const { user, summary, toggle, loading, categoryColors } = useStatistics();
+  const { summary, toggle, loading, categoryColors } = useStatistics();
   const categories = useMemo(() => {
     return summary?.categories.filter((c) => c.type === toggle);
   }, [summary, toggle]);
@@ -45,6 +45,12 @@ export default function Chart({
 
   return (
     <div className={css["chart-container"]}>
+      <p className={css["balance-amount"]}>
+        ₴{" "}
+        {toggle === "income"
+          ? summary.totals.totalIncome
+          : summary.totals.totalExpense}
+      </p>
       <PieChart
         style={{
           width: "100%",
@@ -71,7 +77,6 @@ export default function Chart({
 
         <Tooltip defaultIndex={defaultIndex} />
       </PieChart>
-      <p className={css["balance-amount"]}>₴ {user?.balance}</p>
     </div>
   );
 }
