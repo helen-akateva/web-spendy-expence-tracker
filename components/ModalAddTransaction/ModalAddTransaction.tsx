@@ -4,6 +4,7 @@ import TransactionForm, {
 } from "@/components/TransactionForm/TransactionForm";
 import css from "./ModalAddTransaction.module.css";
 import CancelButton from "../CancelButton/CancelButton";
+import { addNewTransaction } from "@/lib/api/transactions";
 
 interface Props {
   onClose: () => void;
