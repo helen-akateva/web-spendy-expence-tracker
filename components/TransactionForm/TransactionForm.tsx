@@ -12,9 +12,9 @@ import Toggle from "../Toggle/Toggle";
 
 export interface TransactionFormValues {
   type: "income" | "expense";
-  amount: number | "";
+  amount: number;
   date: Date;
-  category: string;
+  categoryId: string;
   comment: string;
 }
 
@@ -32,7 +32,7 @@ const validationSchema = Yup.object({
     .max(1000000, "Amount must be at most 1 000 000")
     .typeError("Amount must be a number"),
   date: Yup.date().required("Date is required"),
-  category: Yup.string().when("type", {
+  categoryId: Yup.string().when("type", {
     is: "expense",
     then: (schema) => schema.required("Category is required"),
   }),
@@ -82,14 +82,14 @@ export default function TransactionForm({
           {values.type === "expense" && (
             <div style={{ width: "100%", paddingBottom: "12px" }}>
               <Field
-                name="category"
+                name="categoryId"
                 component={CategorySelect}
                 options={categoryOptions}
-                hasError={touched.category && !!errors.category}
-                hasSuccess={touched.category && !errors.category}
+                hasError={touched.categoryId && !!errors.categoryId}
+                hasSuccess={touched.categoryId && !errors.categoryId}
               />
               <ErrorMessage
-                name="category"
+                name="categoryId"
                 component="p"
                 className={css.errorText}
               />

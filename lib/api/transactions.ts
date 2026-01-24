@@ -18,10 +18,10 @@ export interface TransactionsListResponse {
   transactions: Transaction[];
 }
 
-type NewTransactionData = Pick<
+export type NewTransactionData = Pick<
   Transaction,
-  "type" | "category" | "amount" | "date" | "comment"
->;
+  "type" | "amount" | "date" | "comment"
+> & { categoryId: string };
 
 export const fetchAllTransactions = async () => {
   const response =

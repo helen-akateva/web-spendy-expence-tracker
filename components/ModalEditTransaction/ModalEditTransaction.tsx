@@ -12,7 +12,7 @@ interface Props {
     type: "income" | "expense";
     amount: number;
     date: string;
-    category: string;
+    categoryId: string;
     comment: string;
   };
   onClose: () => void;
@@ -23,7 +23,7 @@ export default function ModalEditTransaction({ transaction, onClose }: Props) {
     type: transaction.type,
     amount: transaction.amount,
     date: new Date(transaction.date),
-    category: transaction.category,
+    categoryId: transaction.categoryId,
     comment: transaction.comment,
   };
 

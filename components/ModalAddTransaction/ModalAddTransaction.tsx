@@ -13,15 +13,21 @@ interface Props {
 export default function ModalAddTransaction({ onClose }: Props) {
   const initialValues: TransactionFormValues = {
     type: "expense",
-    amount: "",
+    amount: 0,
     date: new Date(),
-    category: "",
+    categoryId: "",
     comment: "",
   };
 
   const handleSubmit = async (values: TransactionFormValues) => {
     // await api.createTransaction(values);
     console.log("ADD:", values);
+    const payload = {
+      ...values,
+      date: values.date.toISOString().split("T")[0],
+    };
+
+    await addNewTransaction(payload);
 
     onClose();
   };
