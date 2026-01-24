@@ -1,0 +1,90 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Main card */
+.card {
+  width: 100%;
+  max-width: 300px;
+  background: linear-gradient(180deg, #355f64 0%, #294045 100%);
+  border-radius: 20px;
+  padding: 16px;
+  color: #ffffff;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  width: 100%;
+  max-width: 256px;
+  height: 52px;
+
+  margin: 0 auto;
+  padding: 16px 12px;
+
+  border-radius: 12px;
+  background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.body {
+  margin-top: 12px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 8px 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #cfcfcf;
+}
+
+.row span:nth-child(2),
+.row span:nth-child(3),
+.header span:nth-child(2),
+.header span:nth-child(3) {
+  text-align: right;
+}
+
+.currency {
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* Error */
+.error {
+  color: #ff6b6b;
+  text-align: center;
+}
+.illustration {
+  width: 234px;
+  height: 174px;
+
+  margin: 24px auto 0; /* відступ від таблиці */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide from tablet */
+@media (min-width: 744px) {
+  .wrapper {
+    display: none;
+  }
+}
