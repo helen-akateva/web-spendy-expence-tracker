@@ -15,7 +15,9 @@ export default function ModalDeleteTransaction({ onClose }: Props) {
         </svg>
         <h2 className={css.title}>Spendy</h2>
         <p className={css.p}>Are you sure you want to Delete?</p>
-        <button className={css.delete}>Delete</button>
+        <button type="button" className={css.delete}>
+          Delete
+        </button>
         <CancelButton onClick={onClose} />
       </div>
     </Modal>

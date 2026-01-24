@@ -5,7 +5,7 @@ import css from "./page.module.css";
 
 import ModalAddTransaction from "@/components/ModalAddTransaction/ModalAddTransaction";
 import ModalEditTransaction from "@/components/ModalEditTransaction/ModalEditTransaction";
-import ModalDeleteTransaction from "@/components/ModalDeleteTransaction /ModalDeleteTransaction";
+import ModalDeleteTransaction from "@/components/ModalDeleteTransaction/ModalDeleteTransaction";
 
 type ModalType = "add" | "edit" | "delete" | null;
 
