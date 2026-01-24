@@ -7,15 +7,28 @@ import ModalAddTransaction from "@/components/ModalAddTransaction/ModalAddTransa
 import ModalEditTransaction from "@/components/ModalEditTransaction/ModalEditTransaction";
 import ModalDeleteTransaction from "@/components/ModalDeleteTransaction/ModalDeleteTransaction";
 
-type ModalType = "add" | "edit" | "delete" | null;
+import TransactionsList from "@/components/HomeTab/TransactionsList";
+import { useQuery } from "@tanstack/react-query";
+import {
+  fetchAllTransactions,
+  TransactionsListResponse,
+} from "@/lib/api/transactions";
+
+export type ModalType = "add" | "edit" | "delete" | null;
 
 export default function Transaction() {
   const [modalType, setModalType] = useState<ModalType>(null);
 
   const closeModal = () => setModalType(null);
 
+  const { data, isLoading, isError } = useQuery<TransactionsListResponse>({
+    queryKey: ["transactions"],
+    queryFn: fetchAllTransactions,
+  });
+
   return (
     <>
+      {data && <TransactionsList setModalType={setModalType} data={data} />}
       <button className={css.buttonAdd} onClick={() => setModalType("add")}>
         <svg className={css.icon} width="25" height="25">
           <use href="/sprite.svg#icon-plus" />
@@ -28,10 +41,8 @@ export default function Transaction() {
         Delete
       </button>
       <button>Edit modal</button>
-
       {modalType === "add" && <ModalAddTransaction onClose={closeModal} />}
       {/* {modalType === "edit" && <ModalEditTransaction onClose={closeModal} />} */}
-
       {modalType === "delete" && (
         <ModalDeleteTransaction onClose={closeModal} />
       )}
