@@ -1,22 +1,30 @@
 .dashboardWrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .mainContent {
   display: flex;
   flex: 1;
   gap: 20px;
-  padding: 20px;
+  padding: 16px;
+  flex-direction: column;
 }
 
 .content {
   flex: 1;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 /* Tablet */
-@media (min-width: 744px) {
+@media (min-width: 768px) {
+  .content {
+    max-width: 768;
+    flex: 1;
+    margin: 0 auto;
+  }
+
   .mainContent {
     gap: 32px;
     padding: 32px;
@@ -26,7 +34,10 @@
 /* Desktop */
 @media (min-width: 1280px) {
   .mainContent {
-    gap: 40px;
+    flex-direction: row;
+    width: 1280px;
+    margin: 0 auto;
+    gap: 24px;
     padding: 40px;
   }
 }

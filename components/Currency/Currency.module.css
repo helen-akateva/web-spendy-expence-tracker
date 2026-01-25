@@ -83,8 +83,42 @@
 }
 
 /* Hide from tablet */
-@media (min-width: 744px) {
+@media (min-width: 768px) {
+  .card {
+    max-width: 336px;
+    width: 336px;
+  }
   .wrapper {
-    display: none;
+    display: initial;
+    padding: 0;
+  }
+
+  .illustration {
+    margin-top: 15px;
+    width: 181px;
+    height: 135px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    max-width: 400px;
+  }
+
+  .card {
+    max-width: 400px;
+    width: 400px;
+    background: transparent;
+    margin: 0 auto;
+  }
+  .wrapper {
+    display: initial;
+    padding: 0;
+  }
+
+  .illustration {
+    margin-top: 15px;
+    width: 181px;
+    height: 135px;
   }
 }

@@ -4,14 +4,21 @@ import { Transaction } from "@/lib/api/transactions";
 
 interface Props {
   setModalType: (value: ModalType) => void;
+  setSelectedTransaction: (value: Transaction | null) => void;
   data: Transaction[];
 }
 
-const TransactionsList = ({ setModalType, data }: Props) => {
+const TransactionsList = ({
+  setModalType,
+  setSelectedTransaction,
+  data,
+}: Props) => {
   return (
-    <>
-      <TransactionsItem setModalType={setModalType} data={data} />
-    </>
+    <TransactionsItem
+      data={data}
+      setModalType={setModalType}
+      setSelectedTransaction={setSelectedTransaction}
+    />
   );
 };
 

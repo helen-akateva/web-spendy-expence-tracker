@@ -6,8 +6,8 @@ import styles from "./Navigation.module.css";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function Navigation() {
-  const isMobile = useMediaQuery("(max-width: 743.8px)");
-  const isTablet = useMediaQuery("(min-width: 744px)");
+  const isMobile = useMediaQuery("(max-width: 767.8px)");
+  const isTablet = useMediaQuery("(min-width: 768px)");
 
   const pathname = usePathname();
 
@@ -19,10 +19,10 @@ export default function Navigation() {
           <ul className={styles.navPanel}>
             <li
               className={`${styles.navIcon} ${
-                isActive("/dashboard") ? styles.activePath : ""
+                isActive("/transactions") ? styles.activePath : ""
               }`}
             >
-              <Link href="/dashboard">
+              <Link href="/transactions">
                 <svg width="38" height="38">
                   <use href="/sprite.svg#icon-home" />
                 </svg>
@@ -31,10 +31,10 @@ export default function Navigation() {
 
             <li
               className={`${styles.navIcon} ${
-                isActive("/dashboard/statistics") ? styles.activePath : ""
+                isActive("/statistics") ? styles.activePath : ""
               }`}
             >
-              <Link href="/dashboard/statistics">
+              <Link href="/statistics">
                 <svg width="38" height="38">
                   <use href="/sprite.svg#icon-statistics" />
                 </svg>
@@ -43,10 +43,10 @@ export default function Navigation() {
 
             <li
               className={`${styles.navIcon} ${
-                isActive("/dashboard/currency") ? styles.activePath : ""
+                isActive("/currency") ? styles.activePath : ""
               }`}
             >
-              <Link href="/dashboard/currency">
+              <Link href="/currency">
                 <svg width="38" height="38">
                   <use href="/sprite.svg#icon-currency" />
                 </svg>
@@ -62,7 +62,7 @@ export default function Navigation() {
               <li className={styles.navPanelItem}>
                 <div
                   className={`${styles.navIcon} ${
-                    isActive("/dashboard") ? styles.activePath : ""
+                    isActive("/transactions") ? styles.activePath : ""
                   }`}
                 >
                   <svg className={styles.icon}>
@@ -71,16 +71,16 @@ export default function Navigation() {
                 </div>
                 <p
                   className={`${styles.navText} ${
-                    isActive("/dashboard") ? styles.activeText : ""
+                    isActive("/transactions") ? styles.activeText : ""
                   }`}
                 >
-                  <Link href="/dashboard">Home</Link>
+                  <Link href="/transactions">Home</Link>
                 </p>
               </li>
               <li className={styles.navPanelItem}>
                 <div
                   className={`${styles.navIcon} ${
-                    isActive("/dashboard/statistics") ? styles.activePath : ""
+                    isActive("/statistics") ? styles.activePath : ""
                   }`}
                 >
                   <svg className={styles.icon}>
@@ -89,10 +89,10 @@ export default function Navigation() {
                 </div>
                 <p
                   className={`${styles.navText} ${
-                    isActive("/dashboard/statistics") ? styles.activeText : ""
+                    isActive("/statistics") ? styles.activeText : ""
                   }`}
                 >
-                  <Link href="/dashboard/statistics">Statistics</Link>
+                  <Link href="/statistics">Statistics</Link>
                 </p>
               </li>
             </ul>
