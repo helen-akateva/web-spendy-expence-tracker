@@ -4,9 +4,11 @@ import Link from "next/link";
 import styles from "./Header.module.css";
 import { useState } from "react";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
+import { useAuthStore } from "@/lib/stores/authStore";
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const user = useAuthStore((state) => state.user);
 
   return (
     <header className={styles.headerWrapper}>
@@ -22,7 +24,7 @@ export default function Header() {
           </div>
         </Link>
         <div className={styles.rightPanel}>
-          <div className={styles.userName}>Name</div>
+          <div className={styles.userName}>{user?.name || "User"}</div>
           <div className={styles.divider}></div>
 
           <div

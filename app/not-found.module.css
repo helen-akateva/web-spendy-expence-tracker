@@ -1,0 +1,98 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--app-background);
+    padding: 20px;
+}
+
+.content {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.logo {
+    fill: var(--main-white);
+    margin: 0 auto 24px;
+    display: block;
+    opacity: 0.9;
+}
+
+.title {
+    font-family: var(--second-family);
+    font-size: 120px;
+    font-weight: 700;
+    color: var(--main-white);
+    margin: 0 0 16px;
+    line-height: 1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.message {
+    font-family: var(--font-family);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--main-white);
+    margin: 0 0 12px;
+}
+
+.description {
+    font-family: var(--font-family);
+    font-size: 16px;
+    color: var(--main-white);
+    opacity: 0.8;
+    margin: 0 0 32px;
+    line-height: 1.5;
+}
+
+.button {
+    display: inline-block;
+    padding: 14px 40px;
+    background: linear-gradient(135deg, var(--main-light-green), var(--main-dark-green));
+    color: var(--main-white);
+    text-decoration: none;
+    border-radius: 30px;
+    font-family: var(--font-family);
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(80, 143, 140, 0.3);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(80, 143, 140, 0.4);
+    background: linear-gradient(135deg, var(--main-dark-green), var(--main-light-green));
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+/* Tablet */
+@media only screen and (min-width: 768px) {
+    .title {
+        font-size: 160px;
+    }
+
+    .message {
+        font-size: 32px;
+    }
+
+    .description {
+        font-size: 18px;
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1280px) {
+    .title {
+        font-size: 180px;
+    }
+
+    .message {
+        font-size: 36px;
+    }
+}
