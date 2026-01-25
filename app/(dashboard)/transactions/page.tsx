@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import css from "./page.module.css";
 import type { Transaction } from "@/lib/api/transactions";
+
 import ModalAddTransaction from "@/components/ModalAddTransaction/ModalAddTransaction";
 import ModalEditTransaction from "@/components/ModalEditTransaction/ModalEditTransaction";
 import ModalDeleteTransaction from "@/components/ModalDeleteTransaction/ModalDeleteTransaction";
@@ -13,10 +13,15 @@ import { fetchAllTransactions } from "@/lib/api/transactions";
 
 export type ModalType = "add" | "edit" | "delete" | null;
 
-export default function Transaction() {
+export default function TransactionPage() {
   const [modalType, setModalType] = useState<ModalType>(null);
+  const [selectedTransaction, setSelectedTransaction] =
+    useState<Transaction | null>(null);
 
-  const closeModal = () => setModalType(null);
+  const closeModal = () => {
+    setModalType(null);
+    setSelectedTransaction(null);
+  };
 
   const { data } = useQuery<Transaction[]>({
     queryKey: ["transactions"],
@@ -25,19 +30,28 @@ export default function Transaction() {
 
   return (
     <>
-      {data && <TransactionsList setModalType={setModalType} data={data} />}
+      {data && (
+        <TransactionsList
+          data={data}
+          setModalType={setModalType}
+          setSelectedTransaction={setSelectedTransaction}
+        />
+      )}
 
-      {/* <button
-        className={css.buttonDelete}
-        onClick={() => setModalType("delete")}
-      >
-        Delete
-      </button>
-      <button>Edit modal</button> */}
       {modalType === "add" && <ModalAddTransaction onClose={closeModal} />}
-      {/* {modalType === "edit" && <ModalEditTransaction onClose={closeModal} />} */}
-      {modalType === "delete" && (
-        <ModalDeleteTransaction onClose={closeModal} />
+
+      {modalType === "edit" && selectedTransaction && (
+        <ModalEditTransaction
+          transaction={selectedTransaction}
+          onClose={closeModal}
+        />
+      )}
+
+      {modalType === "delete" && selectedTransaction && (
+        <ModalDeleteTransaction
+          transaction={selectedTransaction}
+          onClose={closeModal}
+        />
       )}
     </>
   );

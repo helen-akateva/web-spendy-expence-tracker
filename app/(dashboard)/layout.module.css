@@ -7,17 +7,20 @@
   display: flex;
   flex: 1;
   gap: 20px;
-  padding: 20px;
+  padding: 16px;
   flex-direction: column;
 }
 
 .content {
   flex: 1;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 /* Tablet */
 @media (min-width: 768px) {
   .content {
+    max-width: 768;
     flex: 1;
     margin: 0 auto;
   }

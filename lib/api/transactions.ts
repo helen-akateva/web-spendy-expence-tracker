@@ -18,6 +18,14 @@ export interface TransactionsListResponse {
   transactions: Transaction[];
 }
 
+export interface UpdateTransactionData {
+  type: "income" | "expense";
+  categoryId: string;
+  amount: number;
+  date: string; // YYYY-MM-DD
+  comment?: string;
+}
+
 export type NewTransactionData = Pick<
   Transaction,
   "type" | "amount" | "date" | "comment"
@@ -37,4 +45,20 @@ export const addNewTransaction = async (
     transactionData,
   );
   return response.data;
+};
+
+export const updateTransaction = async (
+  id: string,
+  data: UpdateTransactionData,
+) => {
+  const response = await nextApi.patch<Transaction>(
+    `/api/transactions/${id}`,
+    data,
+  );
+
+  return response.data;
+};
+
+export const deleteTransaction = async (id: string) => {
+  await nextApi.delete(`/api/transactions/${id}`);
 };
