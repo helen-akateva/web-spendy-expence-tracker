@@ -3,8 +3,22 @@
   inset: 0;
   z-index: 1000;
   backdrop-filter: blur(7px);
-  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+
   opacity: 0.4;
+
+  top: 0;
+  left: 0;
+  z-index: 50;
+  animation: fadeIn 0.25s ease forwards;
+
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(7px);
+
+  opacity: 0.4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modalContainer {
@@ -24,6 +38,10 @@
   background: var(--main-light-green);
   opacity: 1;
   z-index: 1000;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  animation: popUp 0.3s ease forwards;
 }
 
 @media only screen and (min-width: 768px) {
@@ -97,5 +115,25 @@
     background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
 
     transition: all 0.3s ease-in-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }

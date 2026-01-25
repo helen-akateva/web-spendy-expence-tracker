@@ -8,7 +8,7 @@
   flex-direction: column;
   gap: 16px;
   /* margin-top: 24px; */
-  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+
   border-radius: 16px;
 }
 
@@ -61,6 +61,11 @@
 .tr {
   display: flex;
   flex-direction: column;
+}
+
+tbody.desktopTd tr:nth-child(n + 2):nth-child(even) {
+  background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+  border-radius: 16px;
 }
 
 .th,
@@ -202,7 +207,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  z-index: 50;
+  z-index: 10;
 }
 
 @media only screen and (min-width: 768px) {
@@ -241,4 +246,8 @@
     min-width: 757px;
     min-height: 585px;
   }
+}
+
+.editIcon {
+  cursor: pointer;
 }

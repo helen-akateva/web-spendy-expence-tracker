@@ -67,7 +67,7 @@ const TransactionItem = ({
                   </tr>
                 </thead>
 
-                <tbody className={css.tbody}>
+                <tbody className={`${css.tbody} ${css.mobileTd}`}>
                   <tr className={`${css.tr} ${css.valueTr}`}>
                     <td className={css.td}>{date}</td>
                     <td className={css.td}>{type}</td>
@@ -135,7 +135,7 @@ const TransactionItem = ({
             </tr>
           </thead>
 
-          <tbody className={css.tbody}>
+          <tbody className={`${css.tbody} ${css.desktopTd}`}>
             {data.map((item) => {
               const { _id, date, type, category, comment, amount } = item;
 
