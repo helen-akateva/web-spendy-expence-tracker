@@ -4,7 +4,6 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import css from "./LoginForm.module.css";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Image from "next/image";
 import { useAuthStore } from "@/lib/store/authStore";
 import { loginValidationSchema } from "@/lib/validations/loginSchema";
 import { authApi } from "@/lib/services/authService";
@@ -126,13 +125,6 @@ export default function LoginForm() {
                 Register
               </button>
             </div>
-            <Image
-              src="/images/dude1x.webp"
-              width={158}
-              height={118}
-              alt="hero"
-              className={css.imghero}
-            />
           </Form>
         )}
       </Formik>
