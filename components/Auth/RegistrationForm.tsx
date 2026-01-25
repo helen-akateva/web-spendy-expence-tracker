@@ -53,7 +53,7 @@ export default function RegistrationForm() {
 			clear();
 
 			toast.success("Account created successfully 🎉");
-			router.replace("/");
+			router.replace("/transactions");
 		} catch (error) {
 			toast.error(
 				error instanceof Error ? error.message : "Registration failed"
@@ -163,8 +163,8 @@ export default function RegistrationForm() {
 													width: `${passwordStrength}%`,
 													backgroundColor:
 														passwordStrength < 50 ? "#ef4444"
-														: passwordStrength < 75 ? "#f59e0b"
-														: "#22c55e",
+															: passwordStrength < 75 ? "#f59e0b"
+																: "#22c55e",
 												}}
 											/>
 										</div>
