@@ -12,12 +12,9 @@ export interface UserData {
 interface AuthStore {
   isAuthenticated: boolean;
   user: UserData | null;
-  token: string | null;
-  setAuth: (user: UserData, token: string) => void;
   setUser: (user: UserData) => void;
   updateBalance: (balance: number) => void;
   logout: () => void;
-  clearAuth: () => void;
 }
 
 export const useAuthStore = create<AuthStore>()(
@@ -25,18 +22,8 @@ export const useAuthStore = create<AuthStore>()(
     (set) => ({
       isAuthenticated: false,
       user: null,
-      token: null,
 
-      // Встановити користувача та токен при логіні/реєстрації
-      setAuth: (user: UserData, token: string) => {
-        set(() => ({
-          user,
-          token,
-          isAuthenticated: true,
-        }));
-      },
-
-      // Оновити дані користувача
+      // Встановити дані користувача при логіні/реєстрації
       setUser: (user: UserData) => {
         set(() => ({
           user,
@@ -55,20 +42,10 @@ export const useAuthStore = create<AuthStore>()(
       logout: () => {
         set(() => ({
           user: null,
-          token: null,
           isAuthenticated: false,
         }));
         // Очищаємо localStorage
         localStorage.removeItem("auth-storage");
-      },
-
-      // Альтернативний метод очищення (deprecated)
-      clearAuth: () => {
-        set(() => ({
-          user: null,
-          token: null,
-          isAuthenticated: false,
-        }));
       },
     }),
     {
@@ -77,7 +54,6 @@ export const useAuthStore = create<AuthStore>()(
       partialize: (state) => ({
         isAuthenticated: state.isAuthenticated,
         user: state.user,
-        token: state.token,
       }),
     },
   ),

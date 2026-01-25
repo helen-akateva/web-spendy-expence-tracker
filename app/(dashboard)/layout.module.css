@@ -1,0 +1,32 @@
+.dashboardWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainContent {
+  display: flex;
+  flex: 1;
+  gap: 20px;
+  padding: 20px;
+}
+
+.content {
+  flex: 1;
+}
+
+/* Tablet */
+@media (min-width: 744px) {
+  .mainContent {
+    gap: 32px;
+    padding: 32px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .mainContent {
+    gap: 40px;
+    padding: 40px;
+  }
+}

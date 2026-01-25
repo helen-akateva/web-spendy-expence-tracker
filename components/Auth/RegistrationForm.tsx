@@ -53,7 +53,7 @@ export default function RegistrationForm() {
       clear();
 
       toast.success("Account created successfully 🎉");
-      router.replace("/dashboard");
+      router.replace("/");
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Registration failed",

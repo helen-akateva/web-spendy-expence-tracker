@@ -37,7 +37,7 @@ export default function LoginForm() {
       setUser(user);
       clear();
       toast.success("Welcome back 👋");
-      router.replace("/dashboard");
+      router.replace("/");
     } catch (error) {
       toast.error(error instanceof Error ? error?.message : "Login failed");
     } finally {
