@@ -10,16 +10,17 @@
 
 @media screen and (min-width: 768px) {
   .sectionform {
-    width: 534px;
-    height: 519px;
+    min-width: 534px;
+    min-height: 519px;
     padding-top: 53px;
+    margin-top: 176px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .sectionform {
-    width: 533px;
-    height: 519px;
+    min-width: 533px;
+    margin-top: 75px;
   }
 }
 
@@ -216,22 +217,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(80, 143, 140, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
   border-radius: 16px;
-}
-
-.imghero {
-  margin-top: 38px;
-  margin-left: 110px;
-}
-
-@media screen and (min-width: 768px) {
-  .imghero {
-    width: 320px;
-    height: 239px;
-  }
 }

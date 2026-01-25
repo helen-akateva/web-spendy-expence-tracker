@@ -1,0 +1,66 @@
+.bg {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.login {
+  background-image: url("/images/dude1x.webp");
+  width: 159px;
+  height: 118px;
+  top: 407px;
+  right: 32px;
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
+  .login {
+    right: calc(32px + (100vw - 375px) / 2);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .login {
+    width: 320px;
+    height: 239px;
+
+    top: 727px;
+    right: calc(1px + (100vw - 768px) / 2);
+  }
+}
+
+@media (min-width: 1280px) {
+  .login {
+    width: 320px;
+    height: 239px;
+    top: 446px;
+    right: calc(16px + (100vw - 1280px) / 2);
+  }
+}
+
+@media (max-width: 767px) {
+  .register {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .register {
+    background-image: url("/images/dude1x.webp");
+    width: 320px;
+    height: 239px;
+    top: 747px;
+    right: calc(1px + (100vw - 768px) / 2);
+  }
+}
+
+@media (min-width: 1280px) {
+  .register {
+    background-image: url("/images/dude-super1x.webp");
+    width: 326px;
+    height: 239px;
+    top: 423px;
+    right: calc(16px + (100vw - 1280px) / 2);
+  }
+}

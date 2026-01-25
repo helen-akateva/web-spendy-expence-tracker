@@ -8,6 +8,21 @@
   margin: 0 auto;
 }
 
+@media screen and (min-width: 768px) {
+  .sectionform {
+    width: 533px;
+    height: 621px;
+    padding-top: 32px;
+    margin-top: 125px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .sectionform {
+    margin-top: 48px;
+  }
+}
+
 .form {
   position: relative;
   display: flex;
@@ -23,9 +38,16 @@
   margin-bottom: 16px;
 }
 
+@media screen and (min-width: 768px) {
+  .formtitle {
+    margin-bottom: 32px;
+  }
+}
+
 .formwrapper {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0;
   width: 100%;
 }
@@ -34,6 +56,12 @@
   position: relative;
   min-height: 60px;
   margin-bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .fieldwrapper {
+    min-height: 68px;
+  }
 }
 
 .fieldwrapper:last-of-type {
@@ -64,6 +92,13 @@
   transition:
     border 0.2s ease,
     color 0.2s ease;
+}
+
+@media screen and (min-width: 768px) {
+  .inputfield {
+    width: 409px;
+    height: 44px;
+  }
 }
 
 .inputfield:placeholder-shown {
@@ -101,11 +136,12 @@
 
 .error {
   position: absolute;
+  bottom: 0;
   left: 4px;
-  color: #b20202;
-  font-weight: 400;
-  font-size: 10px;
-
+  color: #ef4444;
+  font-size: 12px;
+  margin: 0;
+  min-height: 16px;
   line-height: 16px;
 }
 
@@ -123,6 +159,13 @@
   color: #fcfcfc;
   cursor: pointer;
   transition: opacity 0.2s ease;
+}
+
+@media screen and (min-width: 768px) {
+  .btnsubmit {
+    width: 409px;
+    margin-top: 40px;
+  }
 }
 
 .btnsubmit:hover:not(:disabled) {
@@ -149,6 +192,13 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
   margin-top: 16px;
+}
+
+@media screen and (min-width: 768px) {
+  .btnlogin {
+    width: 409px;
+    margin-top: 21px;
+  }
 }
 
 .btnlogin:hover:not(:disabled) {
@@ -180,57 +230,8 @@
 }
 
 @media screen and (min-width: 768px) {
-  .sectionform {
-    max-width: 400px;
-    padding: 32px;
-  }
-
-  .formtitle {
-    font-size: 36px;
-    margin-bottom: 24px;
-  }
-
-  .inputfield,
-  .btnsubmit,
-  .btnlogin {
-    max-width: 336px;
-  }
-
-  .fieldwrapper {
-    min-height: 68px;
-    margin-bottom: 16px;
-  }
-
   .imghero {
-    width: 190px;
-    height: 142px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .sectionform {
-    max-width: 450px;
-    padding: 40px;
-  }
-
-  .formtitle {
-    font-size: 40px;
-    margin-bottom: 32px;
-  }
-
-  .inputfield,
-  .btnsubmit,
-  .btnlogin {
-    max-width: 370px;
-  }
-
-  .fieldwrapper {
-    min-height: 72px;
-    margin-bottom: 16px;
-  }
-
-  .imghero {
-    width: 220px;
-    height: 165px;
+    width: 320px;
+    height: 239px;
   }
 }
