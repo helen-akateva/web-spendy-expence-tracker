@@ -25,6 +25,7 @@ export default function ModalDeleteTransaction({
   const queryClient = useQueryClient();
 
   const updateBalance = useFinanceStore((s) => s.updateBalance);
+  const currentBalance = useFinanceStore((s) => s.balance);
 
   const { mutate } = useMutation({
     mutationFn: deleteTransaction,
@@ -36,12 +37,28 @@ export default function ModalDeleteTransaction({
       toast.success("Transaction deleted successfully");
       onClose();
     },
-    onError: () => {
-      toast.error("Failed to delete transaction");
+    onError: (error: any) => {
+      const errorMessage = error?.response?.data?.message || "Failed to delete transaction";
+      toast.error(errorMessage);
     },
   });
 
   const handleDelete = () => {
+    // Calculate what the balance would be after deletion
+    const isIncome = transaction.type === "income";
+    const newBalance = isIncome
+      ? currentBalance - transaction.amount  // Removing income decreases balance
+      : currentBalance + transaction.amount; // Removing expense increases balance
+
+    // Prevent deletion if balance would become negative
+    if (newBalance < 0) {
+      toast.error(
+        "Cannot delete this transaction. Balance would become negative. Please delete expenses first.",
+        { duration: 4000 }
+      );
+      return;
+    }
+
     mutate(transaction._id);
   };
 
