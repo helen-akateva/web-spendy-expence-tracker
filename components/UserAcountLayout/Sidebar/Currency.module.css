@@ -1,16 +1,74 @@
 .currencyContainer {
-  border-radius: 16px;
-  padding: 16px;
-  width: 336px;
-  height: 310px;
-  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+	border-radius: 16px;
+	padding: 16px;
+	width: 288px;
+	height: 390px;
+	background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
 }
 
-@media only screen and (min-width: 1280px) {
-  .currencyContainer {
-    border-radius: 16px;
-    padding: 32px 27px;
-    width: 757px;
-    height: 585px;
-  }
+.header {
+	display: flex;
+	border-radius: 12px;
+	padding: 16px 32px;
+	width: 304px;
+	height: 51px;
+	font-family: var(--font-family);
+	font-weight: 500;
+	font-size: 16px;
+	gap: 30.5px;
+	color: var(--main-white);
+	background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+}
+
+.header div {
+	flex: 1;
+	text-align: center;
+}
+
+.header div:first-child {
+	text-align: left;
+}
+
+.tableWrapper {
+	width: 304px;
+	margin: 0 auto;
+}
+
+.table {
+	width: 100%;
+	border-spacing: 0;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 16px;
+	color: var(--main-white);
+}
+
+.table td {
+	padding: 16px 32px;
+	text-align: center;
+}
+
+.table td:first-child {
+	text-align: left;
+}
+
+.table tr {
+	height: 51px;
+}
+
+@media (min-width: 1280px) {
+	.currencyContainer {
+		width: 448px;
+		height: 354px;
+		background: none;
+		padding: 23px 24px;
+		border-radius: 0;
+		gap: 12px;
+	}
+	.header {
+		width: 400px;
+	}
+	.tableWrapper {
+		width: 400px;
+	}
 }

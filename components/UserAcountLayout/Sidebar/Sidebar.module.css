@@ -1,25 +1,31 @@
 .sidebarContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  column-gap: 32px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
 }
 
 @media only screen and (min-width: 744px) {
-  .sidebarContainer {
-    width: 706px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    height: 310px;
-    margin-bottom: 32px;
-  }
+	.sidebarContainer {
+		width: 706px;
+		margin: 0 auto;
+		flex-wrap: wrap;
+		height: 310px;
+		margin-bottom: 32px;
+	}
 }
 
 @media only screen and (min-width: 1280px) {
-  .sidebarContainer {
-    justify-content: flex-start;
-    width: 451px;
-    height: 757px;
-    margin: 0;
-  }
+	.sidebarContainer {
+		flex-direction: row;
+		width: 451px;
+		height: 585px;
+	}
+}
+
+.balanceCurrencyWrapper {
+	display: flex;
+	flex-direction: column;
+	border-radius: 16px;
+	background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+	gap: 24px;
 }
