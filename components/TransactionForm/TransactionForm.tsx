@@ -50,15 +50,16 @@ export default function TransactionForm({
   const datePickerRef = useRef<DatePicker>(null);
   const [isOpen, setIsOpen] = useState(false);
 
+  const [type, setType] = useState<"income" | "expense">(initialValues.type);
   const [categoryOptions, setCategoryOptions] = useState<Option[]>([]);
 
   useEffect(() => {
-    fetchCategories({ type: "expense" }).then((categories) =>
+    fetchCategories({ type }).then((categories) =>
       setCategoryOptions(
         categories.map((cat) => ({ value: cat._id, label: cat.name })),
       ),
     );
-  }, []);
+  }, [type]);
 
   return (
     <Formik<TransactionFormValues>
@@ -76,25 +77,27 @@ export default function TransactionForm({
         <Form className={css.form}>
           <Toggle
             value={values.type}
-            onChange={(value) => setFieldValue("type", value)}
+            onChange={(value) => {
+              setType(value);
+              setFieldValue("type", value);
+            }}
           />
 
-          {values.type === "expense" && (
-            <div style={{ width: "100%", paddingBottom: "12px" }}>
-              <Field
-                name="categoryId"
-                component={CategorySelect}
-                options={categoryOptions}
-                hasError={touched.categoryId && !!errors.categoryId}
-                hasSuccess={touched.categoryId && !errors.categoryId}
-              />
-              <ErrorMessage
-                name="categoryId"
-                component="p"
-                className={css.errorText}
-              />
-            </div>
-          )}
+          <div style={{ width: "100%", paddingBottom: "12px" }}>
+            <Field
+              name="categoryId"
+              component={CategorySelect}
+              options={categoryOptions}
+              hasError={touched.categoryId && !!errors.categoryId}
+              hasSuccess={touched.categoryId && !errors.categoryId}
+            />
+            <ErrorMessage
+              name="categoryId"
+              component="p"
+              className={css.errorText}
+            />
+          </div>
+
           <div className={css.fixedWidthGrop}>
             <div className={css.formGrop}>
               <Field

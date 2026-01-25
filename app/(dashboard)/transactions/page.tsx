@@ -26,11 +26,7 @@ export default function Transaction() {
   return (
     <>
       {data && <TransactionsList setModalType={setModalType} data={data} />}
-      <button className={css.buttonAdd} onClick={() => setModalType("add")}>
-        <svg className={css.icon} width="25" height="25">
-          <use href="/sprite.svg#icon-plus" />
-        </svg>
-      </button>
+
       <button
         className={css.buttonDelete}
         onClick={() => setModalType("delete")}
