@@ -5,6 +5,7 @@ import { GoPencil } from "react-icons/go";
 import { useEffect, useState } from "react";
 import { ModalType } from "@/app/(dashboard)/transactions/page";
 import { Transaction } from "@/lib/api/transactions";
+import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 interface Props {
   setModalType: (value: ModalType) => void;
@@ -12,23 +13,13 @@ interface Props {
 }
 
 const TransactionItem = ({ setModalType, data }: Props) => {
-  const [width, setWidth] = useState<number>(0);
-  useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  if (width === 0) return null;
+  const isMobile = useMediaQuery("(max-width: 767.9px)");
 
   console.log(data);
 
   return (
     <>
-      {width <= 767 ? (
+      {isMobile && (
         <div className={css.transactionPage}>
           {data.map(({ _id, date, type, category, comment, amount }) => (
             <div className={css.tableWrapper} key={_id}>
@@ -95,7 +86,8 @@ const TransactionItem = ({ setModalType, data }: Props) => {
             </div>
           ))}
         </div>
-      ) : (
+      )}
+      {!isMobile && (
         <div className={`${css.transactionPage}`}>
           <div className={css.tableWrapper}>
             <table className={`${css.transactionTable} ${css.scroll}`}>

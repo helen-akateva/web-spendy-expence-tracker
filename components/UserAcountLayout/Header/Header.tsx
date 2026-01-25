@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <header className={styles.headerWrapper}>
       <div className={styles.container}>
-        <Link href="/dashboard">
+        <Link href="/transactions">
           <div className={styles.logoWrapper}>
             <div>
               <svg width="31" height="31">

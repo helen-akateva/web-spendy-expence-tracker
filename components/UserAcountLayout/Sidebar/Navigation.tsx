@@ -6,8 +6,8 @@ import styles from "./Navigation.module.css";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function Navigation() {
-  const isMobile = useMediaQuery("(max-width: 743.8px)");
-  const isTablet = useMediaQuery("(min-width: 744px)");
+  const isMobile = useMediaQuery("(max-width: 767.8px)");
+  const isTablet = useMediaQuery("(min-width: 768px)");
 
   const pathname = usePathname();
 
@@ -18,8 +18,9 @@ export default function Navigation() {
         <nav>
           <ul className={styles.navPanel}>
             <li
-              className={`${styles.navIcon} ${isActive("/transactions") ? styles.activePath : ""
-                }`}
+              className={`${styles.navIcon} ${
+                isActive("/transactions") ? styles.activePath : ""
+              }`}
             >
               <Link href="/transactions">
                 <svg width="38" height="38">
@@ -29,8 +30,9 @@ export default function Navigation() {
             </li>
 
             <li
-              className={`${styles.navIcon} ${isActive("/statistics") ? styles.activePath : ""
-                }`}
+              className={`${styles.navIcon} ${
+                isActive("/statistics") ? styles.activePath : ""
+              }`}
             >
               <Link href="/statistics">
                 <svg width="38" height="38">
@@ -40,8 +42,9 @@ export default function Navigation() {
             </li>
 
             <li
-              className={`${styles.navIcon} ${isActive("/currency") ? styles.activePath : ""
-                }`}
+              className={`${styles.navIcon} ${
+                isActive("/currency") ? styles.activePath : ""
+              }`}
             >
               <Link href="/currency">
                 <svg width="38" height="38">
@@ -58,32 +61,36 @@ export default function Navigation() {
             <ul className={styles.navPanel}>
               <li className={styles.navPanelItem}>
                 <div
-                  className={`${styles.navIcon} ${isActive("/transactions") ? styles.activePath : ""
-                    }`}
+                  className={`${styles.navIcon} ${
+                    isActive("/transactions") ? styles.activePath : ""
+                  }`}
                 >
                   <svg className={styles.icon}>
                     <use href="/sprite.svg#icon-home" />
                   </svg>
                 </div>
                 <p
-                  className={`${styles.navText} ${isActive("/transactions") ? styles.activeText : ""
-                    }`}
+                  className={`${styles.navText} ${
+                    isActive("/transactions") ? styles.activeText : ""
+                  }`}
                 >
                   <Link href="/transactions">Home</Link>
                 </p>
               </li>
               <li className={styles.navPanelItem}>
                 <div
-                  className={`${styles.navIcon} ${isActive("/statistics") ? styles.activePath : ""
-                    }`}
+                  className={`${styles.navIcon} ${
+                    isActive("/statistics") ? styles.activePath : ""
+                  }`}
                 >
                   <svg className={styles.icon}>
                     <use href="/sprite.svg#icon-statistics" />
                   </svg>
                 </div>
                 <p
-                  className={`${styles.navText} ${isActive("/statistics") ? styles.activeText : ""
-                    }`}
+                  className={`${styles.navText} ${
+                    isActive("/statistics") ? styles.activeText : ""
+                  }`}
                 >
                   <Link href="/statistics">Statistics</Link>
                 </p>

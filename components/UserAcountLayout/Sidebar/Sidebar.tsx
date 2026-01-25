@@ -7,7 +7,7 @@ import Currency from "./Currency";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function Sidebar() {
-  const isTablet = useMediaQuery("(min-width: 744px)");
+  const isTablet = useMediaQuery("(min-width: 768px)");
   const isDesktop = useMediaQuery("(min-width: 1280px)");
 
   return (
