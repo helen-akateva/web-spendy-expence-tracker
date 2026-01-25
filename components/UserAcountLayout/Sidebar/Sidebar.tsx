@@ -2,27 +2,28 @@
 
 import styles from "./Sidebar.module.css";
 import Navigation from "./Navigation";
-import Ballance from "./Ballance";
-import Currency from "@/components/Currency/Currency";
+import Balance from "./Balance";
+import Currency from "./Currency";
 import { useMediaQuery } from "@/lib/hooks/useMediaQuery";
 
 export default function Sidebar() {
-  const isMobile = useMediaQuery("(max-width: 767.9px)");
-  const isTablet = useMediaQuery("(max-width: 1279.9px)");
+  const isTablet = useMediaQuery("(min-width: 744px) and (max-width: 1279px)");
   const isDesktop = useMediaQuery("(min-width: 1280px)");
 
   return (
     <aside className={styles.sidebarContainer}>
       <Navigation />
-      {isTablet && !isMobile && (
+
+      {isTablet && (
         <>
-          <Ballance />
-          {!isDesktop && <Currency />}
+          <Balance />
+          <Currency />
         </>
       )}
+
       {isDesktop && (
-        <div className={styles.accountContainer}>
-          <Ballance />
+        <div className={styles.balanceCurrencyWrapper}>
+          <Balance />
           <Currency />
         </div>
       )}
