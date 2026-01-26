@@ -3,7 +3,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import DatePicker from "react-datepicker";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 
 import css from "./TransactionForm.module.css";
 import CategorySelect, { Option } from "../CategorySelect/CategorySelect";
@@ -24,29 +24,7 @@ interface Props {
   onSubmit: (values: TransactionFormValues) => Promise<void>;
 }
 
-const validationSchema = Yup.object({
-  type: Yup.string().oneOf(["income", "expense"]).required(),
-  amount: Yup.number()
-    .required("Amount is required")
-    .min(1, "Amount must be at least 1")
-    .max(1000000, "Amount must be at most 1 000 000")
-    .typeError("Amount must be a number"),
-  date: Yup.date()
-    .required("Date is required")
-    .max(new Date(), "Cannot select future date")
-    .min(
-      new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
-      "Date cannot be older than 1 year"
-    ),
-  categoryId: Yup.string().when("type", {
-    is: "expense",
-    then: (schema) => schema.required("Category is required"),
-  }),
-  comment: Yup.string()
-    .min(2, "Comment must be at least 2 characters")
-    .max(192, "Comment must be at most 192 characters")
-    .optional(),
-});
+
 
 export default function TransactionForm({
   initialValues,
@@ -66,6 +44,32 @@ export default function TransactionForm({
       ),
     );
   }, [type]);
+
+  const validationSchema = useMemo(() => {
+    return Yup.object({
+      type: Yup.string().oneOf(["income", "expense"]).required(),
+      amount: Yup.number()
+        .required("Amount is required")
+        .min(1, "Amount must be at least 1")
+        .max(1000000, "Amount must be at most 1 000 000")
+        .typeError("Amount must be a number"),
+      date: Yup.date()
+        .required("Date is required")
+        .max(new Date(), "Cannot select future date")
+        .min(
+          new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
+          "Date cannot be older than 1 year"
+        ),
+      categoryId: Yup.string().when("type", {
+        is: "expense",
+        then: (schema) => schema.required("Category is required"),
+      }),
+      comment: Yup.string()
+        .min(2, "Comment must be at least 2 characters")
+        .max(192, "Comment must be at most 192 characters")
+        .optional(),
+    });
+  }, []);
 
   return (
     <Formik<TransactionFormValues>

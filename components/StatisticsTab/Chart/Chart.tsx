@@ -32,7 +32,7 @@ export default function Chart({
   if (!categories || categories.length === 0) {
     return (
       <div className={css["chart-container"]}>
-        <p className={css["chart-empty"]}>No data available</p>
+        <p className={css["chart-empty"]}>No transactions<br />for this period</p>
       </div>
     );
   }

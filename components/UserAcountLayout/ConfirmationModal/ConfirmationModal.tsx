@@ -2,6 +2,7 @@ import css from "./ConfirmationModal.module.css";
 import { authApi } from "../../../lib/services/authService";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
+import toast from "react-hot-toast";
 
 interface ConfirmationModalProps {
   setIsModalOpen: (value: boolean) => void;
@@ -49,6 +50,7 @@ export default function ConfirmationModal({
       router.push("/login");
     } catch (error) {
       console.error("Logout error:", error);
+      toast.error("Logout failed. Please try again.");
     }
   };
   return (

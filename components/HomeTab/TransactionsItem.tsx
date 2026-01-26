@@ -19,9 +19,44 @@ const TransactionItem = ({
 }: Props) => {
   const isMobile = useMediaQuery("(max-width: 767.9px)");
 
-  if (data.length === 0 && isMobile) {
+  if (data.length === 0) {
     return (
       <div className={css.transactionPage}>
+        {/* MOBILE EMPTY STATE */}
+        {isMobile && (
+          <div className={css.emptyStateMobileWrapper}>
+            <p className={css.emptyStateText}>No transactions found</p>
+            <p className={css.emptyStateSubText}>To start working, add an income transaction first!</p>
+          </div>
+        )}
+
+        {/* DESKTOP EMPTY STATE (Table with message) */}
+        {!isMobile && (
+          <table className={`${css.transactionTable} ${css.scroll}`}>
+            <thead className={css.thead}>
+              <tr className={css.tr}>
+                <th className={css.th}>Date</th>
+                <th className={css.th}>Type</th>
+                <th className={css.th}>Category</th>
+                <th className={css.th}>Comment</th>
+                <th className={css.th}>Sum</th>
+                <th className={css.th}>Edit</th>
+                <th className={css.th}>Delete</th>
+              </tr>
+            </thead>
+            <tbody className={css.tbodyEmpty}>
+              <tr className={css.trEmpty}>
+                <td colSpan={7} className={css.tdEmpty}>
+                  <div className={css.emptyStateWrapperDesktop}>
+                    <p className={css.emptyStateText}>No transactions found</p>
+                    <p className={css.emptyStateSubText}>To start working, add an income transaction first!</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        )}
+
         <button className={css.button} onClick={() => setModalType("add")}>
           <svg className={css.icon} width="25" height="25">
             <use href="/sprite.svg#icon-plus" />
