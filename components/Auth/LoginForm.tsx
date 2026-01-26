@@ -9,6 +9,7 @@ import { loginValidationSchema } from "@/lib/validations/loginSchema";
 import { authApi } from "@/lib/services/authService";
 import { Loader } from "@/components/Loader/Loader";
 import { useAuthFormStore } from "@/lib/stores/authFormStore";
+import { AxiosError } from "axios";
 
 interface LoginFormValues {
   email: string;
@@ -26,23 +27,34 @@ export default function LoginForm() {
     password: "",
   };
 
-  const handleSubmit = async (
-    values: LoginFormValues,
-    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
-  ) => {
-    try {
-      const user = await authApi.login(values);
+const handleSubmit = async (
+  values: LoginFormValues,
+  { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
+) => {
+  try {
+    const user = await authApi.login(values);
 
-      setUser(user);
-      clear();
-      toast.success("Welcome back 👋");
-      router.replace("/");
-    } catch (error) {
-      toast.error(error instanceof Error ? error?.message : "Login failed");
-    } finally {
-      setSubmitting(false);
+    setUser(user);
+    clear();
+    toast.success("Welcome back 👋");
+    router.replace("/");
+  } catch (error) {
+    // Перевірка чи це AxiosError
+    if (error instanceof AxiosError) {
+      if (error.response?.status === 401) {
+        toast.error("Invalid email or password");
+      } else {
+        toast.error(error.message || "Login failed");
+      }
+    } else if (error instanceof Error) {
+      toast.error(error.message);
+    } else {
+      toast.error("Login failed");
     }
-  };
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   return (
     <section className={css.sectionform}>
