@@ -36,7 +36,7 @@ export default function LoginForm() {
       setUser(user);
       clear();
       toast.success("Welcome back 👋");
-      router.replace("/transactions");
+      router.replace("/");
     } catch (error) {
       toast.error(error instanceof Error ? error?.message : "Login failed");
     } finally {

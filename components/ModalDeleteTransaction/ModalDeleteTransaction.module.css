@@ -35,6 +35,14 @@
   max-width: 271px;
 }
 
+.delete:hover {
+  background-color: #a51010;
+}
+
+.delete:focus {
+  background-color: #a70909;
+}
+
 @media only screen and (min-width: 768px) {
   .delete {
     max-width: 410px;
