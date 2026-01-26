@@ -3,6 +3,7 @@ import { authApi } from "../../../lib/services/authService";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 interface ConfirmationModalProps {
   setIsModalOpen: (value: boolean) => void;
@@ -17,6 +18,8 @@ export default function ConfirmationModal({
     setIsModalOpen(false);
   }, [setIsModalOpen]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -29,21 +32,20 @@ export default function ConfirmationModal({
   }, [closeModal]);
 
   const handleLogout = async () => {
+    if (isLoading) return;
     try {
-      // 1. Запит на бекенд
+      setIsLoading(true);
       await authApi.logout();
 
-      // 2. Чистимо localStorage
       localStorage.clear();
 
-      // 3. Чистимо всі JS cookies (не httpOnly)
       document.cookie.split(";").forEach((cookie) => {
         const eqPos = cookie.indexOf("=");
         const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
         document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
       });
 
-      // 4. Закриваємо модалку
+      toast.success("Logged out successfully");
       setIsModalOpen(false);
 
       // 5. Редірект на логін
@@ -51,6 +53,8 @@ export default function ConfirmationModal({
     } catch (error) {
       console.error("Logout error:", error);
       toast.error("Logout failed. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -68,8 +72,12 @@ export default function ConfirmationModal({
 
         <p className={css.modalText}>Are you sure you want to log out?</p>
 
-        <button className={css.modalLogoutBtn} onClick={handleLogout}>
-          Logout
+        <button
+          className={css.modalLogoutBtn}
+          onClick={handleLogout}
+          disabled={isLoading}
+        >
+          {isLoading ? "Logging out..." : "Logout"}
         </button>
 
         <button
