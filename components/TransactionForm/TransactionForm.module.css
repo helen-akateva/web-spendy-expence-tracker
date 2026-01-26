@@ -89,6 +89,13 @@
   outline: none;
   cursor: pointer;
 }
+.buttonSubmit:hover {
+  background: linear-gradient(180deg, #2b4448 0%, #355358 100%);
+}
+
+.buttonSubmit:focus {
+  background: linear-gradient(180deg, #2e484c 0%, #38575c 100%);
+}
 
 .iconDate {
   background-color: var(--main-light-green);
