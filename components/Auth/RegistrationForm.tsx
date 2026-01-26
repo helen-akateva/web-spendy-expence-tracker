@@ -4,6 +4,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import css from "./RegistrationForm.module.css";
+import { AxiosError } from "axios";
 import { useAuthStore } from "@/lib/stores/authStore";
 import { registerValidationSchema } from "@/lib/validations/registerSchema";
 import { authApi } from "@/lib/services/authService";
@@ -55,9 +56,14 @@ export default function RegistrationForm() {
       toast.success("Account created successfully 🎉");
       router.replace("/");
     } catch (error) {
-      toast.error(
-        error instanceof Error ? error.message : "Registration failed",
-      );
+      const message =
+        error instanceof AxiosError && error.response?.data?.message
+          ? error.response.data.message
+          : error instanceof Error
+            ? error.message
+            : "Registration failed";
+
+      toast.error(message);
     } finally {
       setSubmitting(false);
     }
