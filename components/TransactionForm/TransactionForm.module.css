@@ -104,6 +104,7 @@
 }
 .buttonSubmit:hover {
   background: linear-gradient(180deg, #2b4448 0%, #355358 100%);
+  transition: all 0.3s ease-in-out;
 }
 
 .buttonSubmit:focus {

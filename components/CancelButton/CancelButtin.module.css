@@ -16,6 +16,7 @@
 
 .button:hover {
   background-color: #498380;
+  transition: all 0.3s ease-in-out;
 }
 
 .button:focus {

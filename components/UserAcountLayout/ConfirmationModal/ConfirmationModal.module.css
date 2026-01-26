@@ -94,12 +94,22 @@
   text-align: center;
   color: var(--main-white);
   transition: all 0.3s ease-in-out;
-
-  &:hover {
-    background: var(--main-black);
-    transition: all 0.3s ease-in-out;
-  }
 }
+
+.modalLogoutBtn:hover {
+  background: linear-gradient(180deg, #2b4448 0%, #355358 100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.modalLogoutBtn:focus {
+  background: linear-gradient(180deg, #2e484c 0%, #38575c 100%);
+}
+
+.modalLogoutBtn:disabled {
+  background: rgb(65, 84, 88);
+  cursor: not-allowed;
+}
+
 .modalCancelBtn {
   border: 1px solid var(--main-black);
   border-radius: 8px;
@@ -110,12 +120,16 @@
   font-size: 18px;
   text-align: center;
   color: var(--main-black);
+  background-color: var(--main-light-green);
+}
 
-  &:hover {
-    background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+.modalCancelBtn:hover {
+  background-color: #498380;
+  transition: all 0.3s ease-in-out;
+}
 
-    transition: all 0.3s ease-in-out;
-  }
+.modalCancelBtn:focus {
+  background-color: #4b8582;
 }
 
 @keyframes fadeIn {

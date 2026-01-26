@@ -87,8 +87,7 @@ export default function TransactionForm({
       comment: Yup.string()
         .required("Comment is required")
         .min(2, "Comment must be at least 2 characters")
-        .max(192, "Comment must be at most 192 characters")
-        .optional(),
+        .max(192, "Comment must be at most 192 characters"),
     });
   }, []);
 
