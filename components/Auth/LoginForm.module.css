@@ -55,8 +55,9 @@
 
 .fieldwrapper {
   position: relative;
-  min-height: 60px;
-  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 @media screen and (min-width: 768px) {
@@ -69,12 +70,39 @@
   margin-bottom: 0;
 }
 
+.inputbox {
+  position: relative;
+}
+
 .imginput {
   position: absolute;
   left: 14px;
-  top: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   pointer-events: none;
   fill: currentColor;
+}
+
+.fieldwrapper:has(.inputfield:placeholder-shown) {
+  color: #355359;
+}
+
+.fieldwrapper:has(.inputfield:focus) {
+  color: #0b6016;
+}
+
+.fieldwrapper:has(.inputfield:not(:placeholder-shown):not(:focus)) {
+  color: #081222;
+}
+
+.fieldwrapper:has(.inputfield.error),
+.fieldwrapper:has(.inputfield.error:focus),
+.fieldwrapper:has(.inputfield.error:not(:placeholder-shown)) {
+  color: #b20202;
+}
+
+.fieldwrapper:has(.inputfield:disabled) {
+  color: #355359;
 }
 
 .fieldwrapper:last-of-type {
@@ -86,13 +114,32 @@
   border-radius: 8px;
   padding: 10px 14px 10px 50px;
   width: 100%;
+  max-width: 409px;
   min-width: 256px;
   height: 44px;
+  box-sizing: border-box;
   background: #508f8c;
+  font-size: 18px;
+  font-weight: 500;
   outline: none;
   transition:
     border 0.2s ease,
     color 0.2s ease;
+}
+
+.inputfield:-webkit-autofill,
+.inputfield:-webkit-autofill:hover,
+.inputfield:-webkit-autofill:focus,
+.inputfield:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #508f8c inset;
+  -webkit-text-fill-color: #081222;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.inputfield:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #508f8c inset;
+  -webkit-text-fill-color: #0b6016;
+  border: 1px solid #0b6016;
 }
 
 @media screen and (min-width: 768px) {
@@ -103,8 +150,6 @@
 }
 
 .inputfield:placeholder-shown {
-  font-weight: 500;
-  font-size: 18px;
   color: #355359;
   border: 1px solid #355359;
 }
@@ -125,25 +170,30 @@
   border: 1px solid #081222;
 }
 
-.inputfield.error {
-  color: #b20202;
-  border: 1px solid #b20202;
-}
-
 .inputfield:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
 .error {
-  position: absolute;
-  bottom: 0;
-  left: 4px;
-  color: #ef4444;
-  font-size: 12px;
-  margin: 0;
   min-height: 16px;
+  font-size: 12px;
   line-height: 16px;
+  color: #ef4444;
+}
+
+.fieldwrapper:has(.inputfield.error),
+.fieldwrapper:has(.inputfield.error:focus),
+.fieldwrapper:has(.inputfield.error:not(:placeholder-shown)) {
+  color: #b20202;
+}
+
+.inputfield.error,
+.inputfield.error:hover,
+.inputfield.error:focus,
+.inputfield.error:not(:placeholder-shown) {
+  color: #b20202;
+  border: 1px solid #b20202;
 }
 
 .btnsubmit {

@@ -1,6 +1,6 @@
 "use client";
 
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik, FieldProps } from "formik";
 import css from "./LoginForm.module.css";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -9,7 +9,8 @@ import { loginValidationSchema } from "@/lib/validations/loginSchema";
 import { authApi } from "@/lib/services/authService";
 import { Loader } from "@/components/Loader/Loader";
 import { useAuthFormStore } from "@/lib/stores/authFormStore";
-import { AxiosError } from "axios";
+import axios from "axios";
+import { useState } from "react";
 
 interface LoginFormValues {
   email: string;
@@ -22,39 +23,34 @@ export default function LoginForm() {
 
   const { email, setEmail, clear } = useAuthFormStore();
 
+  const [isNavigating, setIsNavigating] = useState(false);
+
   const initialValues: LoginFormValues = {
     email,
     password: "",
   };
 
-const handleSubmit = async (
-  values: LoginFormValues,
-  { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
-) => {
-  try {
-    const user = await authApi.login(values);
+  const handleSubmit = async (
+    values: LoginFormValues,
+    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
+  ) => {
+    try {
+      const user = await authApi.login(values);
 
-    setUser(user);
-    clear();
-    toast.success("Welcome back 👋");
-    router.replace("/");
-  } catch (error) {
-    // Перевірка чи це AxiosError
-    if (error instanceof AxiosError) {
-      if (error.response?.status === 401) {
-        toast.error("Invalid email or password");
+      setUser(user);
+      clear();
+      toast.success("Welcome back 👋");
+      router.replace("/");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(error.response?.data?.message ?? "Login failed");
       } else {
-        toast.error(error.message || "Login failed");
+        toast.error("Login failed");
       }
-    } else if (error instanceof Error) {
-      toast.error(error.message);
-    } else {
-      toast.error("Login failed");
+    } finally {
+      setSubmitting(false);
     }
-  } finally {
-    setSubmitting(false);
-  }
-};
+  };
 
   return (
     <section className={css.sectionform}>
@@ -62,9 +58,8 @@ const handleSubmit = async (
         initialValues={initialValues}
         validationSchema={loginValidationSchema}
         onSubmit={handleSubmit}
-        enableReinitialize
       >
-        {({ isSubmitting, setFieldValue }) => (
+        {({ isSubmitting, values }) => (
           <Form noValidate className={css.form}>
             {isSubmitting && (
               <div className={css.loaderOverlay}>
@@ -79,21 +74,27 @@ const handleSubmit = async (
 
             <div className={css.formwrapper}>
               <div className={css.fieldwrapper}>
-                <svg width="24" height="24" className={css.imginput}>
-                  <use href="/sprite.svg#icon-email" />
-                </svg>
-                <Field
-                  name="email"
-                  type="email"
-                  id="email"
-                  className={css.inputfield}
-                  placeholder="E-mail"
-                  disabled={isSubmitting}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setFieldValue("email", e.target.value);
-                    setEmail(e.target.value);
-                  }}
-                />
+                <div className={css.inputbox}>
+                  <svg width="24" height="24" className={css.imginput}>
+                    <use href="/sprite.svg#icon-email" />
+                  </svg>
+                  <Field name="email">
+                    {({ field, meta }: FieldProps) => (
+                      <input
+                        {...field}
+                        type="email"
+                        id="email"
+                        placeholder="E-mail"
+                        disabled={isSubmitting}
+                        suppressHydrationWarning
+                        className={`${css.inputfield} ${
+                          meta.touched && meta.error ? css.error : ""
+                        }`}
+                      />
+                    )}
+                  </Field>
+                </div>
+
                 <ErrorMessage
                   name="email"
                   component="div"
@@ -102,17 +103,26 @@ const handleSubmit = async (
               </div>
 
               <div className={css.fieldwrapper}>
-                <svg width="24" height="24" className={css.imginput}>
-                  <use href="/sprite.svg#icon-lock" />
-                </svg>
-                <Field
-                  name="password"
-                  type="password"
-                  id="password"
-                  className={css.inputfield}
-                  placeholder="Password"
-                  disabled={isSubmitting}
-                />
+                <div className={css.inputbox}>
+                  <svg width="24" height="24" className={css.imginput}>
+                    <use href="/sprite.svg#icon-lock" />
+                  </svg>
+                  <Field name="password">
+                    {({ field, meta }: FieldProps) => (
+                      <input
+                        {...field}
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        disabled={isSubmitting}
+                        suppressHydrationWarning
+                        className={`${css.inputfield} ${
+                          meta.touched && meta.error ? css.error : ""
+                        }`}
+                      />
+                    )}
+                  </Field>
+                </div>
                 <ErrorMessage
                   name="password"
                   component="div"
@@ -123,7 +133,7 @@ const handleSubmit = async (
               <button
                 className={css.btnsubmit}
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || isNavigating}
               >
                 {isSubmitting ? "Log in..." : "Log in"}
               </button>
@@ -131,10 +141,23 @@ const handleSubmit = async (
               <button
                 className={css.btnregister}
                 type="button"
-                onClick={() => router.push("/register")}
-                disabled={isSubmitting}
+                disabled={isSubmitting || isNavigating}
+                onClick={() => {
+                  setIsNavigating(true);
+                  setEmail(values.email);
+                  router.push("/register");
+                }}
               >
-                Register
+                {isNavigating ? (
+                  <>
+                    <span>Redirecting...</span>
+                    <div className={css.loaderOverlay}>
+                      <Loader size={80} />
+                    </div>
+                  </>
+                ) : (
+                  "Register"
+                )}
               </button>
             </div>
           </Form>

@@ -39,19 +39,34 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(apiRes.data, {
-        status: apiRes.status,
+        status: 200,
       });
     }
 
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   } catch (error) {
     if (isAxiosError(error)) {
+      const status = error.response?.status;
+
+      if (status === 401) {
+        return NextResponse.json(
+          { message: "Invalid email or password" },
+          { status: 401 },
+        );
+      }
+
+      if (status === 400) {
+        return NextResponse.json(
+          { message: "Please check your email and password format" },
+          { status: 400 },
+        );
+      }
+
       return NextResponse.json(
         {
-          message:
-            error.response?.data?.message || error.message || "Login failed",
+          message: "Something went wrong. Please try again.",
         },
-        { status: error.response?.status || 500 },
+        { status: status ?? 500 },
       );
     }
 

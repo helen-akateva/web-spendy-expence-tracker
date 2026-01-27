@@ -39,21 +39,33 @@ export async function POST(req: NextRequest) {
       }
 
       return NextResponse.json(apiRes.data, {
-        status: apiRes.status,
+        status: 201,
       });
     }
 
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   } catch (error) {
     if (isAxiosError(error)) {
+      const status = error.response?.status;
+
+      if (status === 400) {
+        return NextResponse.json(
+          { message: "Please check the entered data" },
+          { status: 400 },
+        );
+      }
+
+      if (status === 409) {
+        return NextResponse.json(
+          { message: "User with this email already exists" },
+          { status: 409 },
+        );
+      }
       return NextResponse.json(
         {
-          message:
-            error.response?.data?.message ||
-            error.message ||
-            "Registration failed",
+          message: "Registration failed. Please try again later",
         },
-        { status: error.response?.status || 500 },
+        { status: 500 },
       );
     }
 
