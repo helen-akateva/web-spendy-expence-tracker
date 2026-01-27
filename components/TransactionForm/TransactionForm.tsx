@@ -39,7 +39,7 @@ export default function TransactionForm({
   const [isOpen, setIsOpen] = useState(false);
 
   const [type, setType] = useState<"income" | "expense">(initialValues.type);
-  // Використовуємо по одному селектору, щоб уникнути проблем з типами
+
   const incomeCategories = useCategoriesStore(
     (state: CategoriesState) => state.incomeCategories,
   );
@@ -56,12 +56,10 @@ export default function TransactionForm({
     (state: CategoriesState) => state.isLoading,
   );
 
-  // Завантажуємо категорії один раз
   useEffect(() => {
     if (!isLoaded && !isLoading) loadCategories();
   }, [isLoaded, isLoading, loadCategories]);
 
-  // Генеруємо опції для селекту
   const categoryOptions: Option[] = useMemo(() => {
     const categories = type === "income" ? incomeCategories : expenseCategories;
     if (isLoading) return [{ value: "", label: "Loading..." }];
@@ -97,7 +95,10 @@ export default function TransactionForm({
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting }) => {
         try {
-          await onSubmit(values);
+          await onSubmit({
+            ...values,
+            amount: Number(values.amount),
+          });
         } finally {
           setSubmitting(false);
         }
@@ -139,22 +140,41 @@ export default function TransactionForm({
                     : ""
                 }`}
                 name="amount"
-                type="number"
+                type="text"
                 placeholder="0.00"
-                min={0}
-                max={1000000}
+                inputMode="decimal"
                 onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-                  if (["e", "E", "+", "-"].includes(e.key)) {
+                  if (
+                    !/[0-9.]/.test(e.key) &&
+                    ![
+                      "Backspace",
+                      "Delete",
+                      "ArrowLeft",
+                      "ArrowRight",
+                      "Tab",
+                    ].includes(e.key)
+                  ) {
+                    e.preventDefault();
+                  }
+
+                  if (e.key === "." && e.currentTarget.value.includes(".")) {
                     e.preventDefault();
                   }
                 }}
                 onInput={(e: React.FormEvent<HTMLInputElement>) => {
                   const input = e.currentTarget;
-                  let value = parseFloat(input.value);
+                  let value = input.value.replace(",", ".");
 
-                  if (isNaN(value)) value = 0;
-                  if (value < 0) input.value = "0";
-                  if (value > 1000000) input.value = "1000000";
+                  const match = value.match(/^\d*\.?\d{0,2}/);
+                  value = match ? match[0] : "";
+
+                  const num = parseFloat(value);
+                  if (!isNaN(num) && num > 1000000) {
+                    value = "1000000";
+                  }
+
+                  input.value = value;
+                  setFieldValue("amount", value);
                 }}
               />
               <ErrorMessage

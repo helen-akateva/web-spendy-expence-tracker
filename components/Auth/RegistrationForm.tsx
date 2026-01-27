@@ -50,7 +50,7 @@ export default function RegistrationForm() {
       clear();
 
       toast.success("Account created successfully 🎉");
-      router.replace("/");
+      router.replace("/transactions");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data?.message ?? "Login failed");

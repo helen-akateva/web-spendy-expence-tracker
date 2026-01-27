@@ -32,7 +32,6 @@ export default function ModalDeleteTransaction({
       const isIncome = transaction.type === "income";
       updateBalance(transaction.amount, !isIncome);
 
-      // ✅ Видаляємо транзакцію з кешу без повторного fetch
       queryClient.setQueryData<Transaction[]>(["transactions"], (old = []) =>
         old.filter((t) => t._id !== transaction._id),
       );

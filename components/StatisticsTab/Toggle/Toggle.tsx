@@ -13,7 +13,7 @@ export default function Toggle() {
   };
 
   return (
-    <div className={css["togle-container"]}>
+    <div className={css["togle-container"]} onClick={handleBtnClick}>
       <p className={css["togle-text"]}>Income</p>
 
       <div className={css["togle-box"]}>
@@ -23,7 +23,6 @@ export default function Toggle() {
               ? `${css["togle-circle"]} ${css["expense-active"]}`
               : `${css["togle-circle"]}`
           }
-          onClick={handleBtnClick}
         >
           <span className={`${css["line"]} ${css["vertical"]}`}></span>
           <span className={`${css["line"]} ${css["horizontal"]}`}></span>

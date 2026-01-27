@@ -20,6 +20,7 @@
   height: 40px;
   margin: 0 20px 0 24px;
   background: var(--main-white);
+  cursor: pointer;
 }
 
 .togle-circle {

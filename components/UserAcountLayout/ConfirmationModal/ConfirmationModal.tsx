@@ -45,16 +45,13 @@ export default function ConfirmationModal({
         document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
       });
 
-      toast.success("Logged out successfully");
-      setIsModalOpen(false);
-
       // 5. Редірект на логін
       router.push("/login");
     } catch (error) {
       console.error("Logout error:", error);
       toast.error("Logout failed. Please try again.");
     } finally {
-      setIsLoading(false);
+      toast.success("Logged out successfully");
     }
   };
   return (

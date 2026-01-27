@@ -40,7 +40,7 @@ export default function LoginForm() {
       setUser(user);
       clear();
       toast.success("Welcome back 👋");
-      router.replace("/");
+      router.replace("/transactions");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(error.response?.data?.message ?? "Login failed");
