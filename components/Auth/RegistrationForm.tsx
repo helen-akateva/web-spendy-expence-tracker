@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -30,6 +32,7 @@ const calculatePasswordStrength = (password: string) => {
 
 export default function RegistrationForm() {
   const router = useRouter();
+  const [isNavigating, setIsNavigating] = useState(false);
   const setUser = useAuthStore((state) => state.setUser);
 
   const { name, email, setEmail, setName, clear } = useAuthFormStore();
@@ -54,6 +57,7 @@ export default function RegistrationForm() {
       clear();
 
       toast.success("Account created successfully 🎉");
+      setIsNavigating(true);
       router.replace("/transactions");
     } catch (error) {
       const message =
@@ -82,7 +86,7 @@ export default function RegistrationForm() {
 
           return (
             <Form noValidate className={css.form}>
-              {isSubmitting && (
+              {(isSubmitting || isNavigating) && (
                 <div className={css.loaderOverlay}>
                   <Loader size={60} />
                 </div>
@@ -103,7 +107,7 @@ export default function RegistrationForm() {
                     type="text"
                     placeholder="Name"
                     className={css.inputfield}
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isNavigating}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setFieldValue("name", e.target.value);
                       setName(e.target.value);
@@ -125,7 +129,7 @@ export default function RegistrationForm() {
                     type="email"
                     placeholder="Email"
                     className={css.inputfield}
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isNavigating}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       setFieldValue("email", e.target.value);
                       setEmail(e.target.value);
@@ -147,7 +151,7 @@ export default function RegistrationForm() {
                     type="password"
                     placeholder="Password"
                     className={css.inputfield}
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isNavigating}
                   />
                   <ErrorMessage
                     name="password"
@@ -183,7 +187,7 @@ export default function RegistrationForm() {
                     type="password"
                     placeholder="Confirm password"
                     className={css.inputfield}
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || isNavigating}
                   />
                   <ErrorMessage
                     name="confirmPassword"
@@ -195,7 +199,7 @@ export default function RegistrationForm() {
                 <button
                   type="submit"
                   className={css.btnsubmit}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isNavigating}
                 >
                   {isSubmitting ? "Register..." : "Register"}
                 </button>
@@ -203,8 +207,11 @@ export default function RegistrationForm() {
                 <button
                   type="button"
                   className={css.btnlogin}
-                  onClick={() => router.push("/login")}
-                  disabled={isSubmitting}
+                  onClick={() => {
+                    setIsNavigating(true);
+                    router.push("/login");
+                  }}
+                  disabled={isSubmitting || isNavigating}
                 >
                   Log in
                 </button>
