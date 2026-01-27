@@ -46,8 +46,8 @@ export async function middleware(request: NextRequest) {
     // Спроба доступу до публічного маршруту (login/register)
     if (isPublicRoute) {
       // Редірект на головну сторінку
-      console.log(`[Middleware] Authorized user accessing ${pathname}, redirecting to /`);
-      return NextResponse.redirect(new URL("/", request.url));
+      console.log(`[Middleware] Authorized user accessing ${pathname}, redirecting to /transactions`);
+      return NextResponse.redirect(new URL("/transactions", request.url));
     }
 
     // Доступ до приватного маршруту - дозволяємо

@@ -2,14 +2,15 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Loader } from "@/components/Loader/Loader";
 
 export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    // Головна сторінка редіректить на /transactions (HomeTab згідно з ТЗ)
+    // Redirect to /transactions (HomeTab)
     router.replace("/transactions");
   }, [router]);
 
-  return null;
+  return <Loader />;
 }
