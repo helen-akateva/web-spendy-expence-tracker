@@ -21,6 +21,7 @@ interface FinanceState {
   updateBalance: (amount: number, isIncome: boolean) => void;
   setCurrency: (data: { rates: CurrencyRate[]; lastFetched: number }) => void;
   setUserData: (user: { balance: number }) => void;
+  isLoadingCurrency: boolean;
 }
 
 export const useFinanceStore = create<FinanceState>()(
@@ -28,6 +29,7 @@ export const useFinanceStore = create<FinanceState>()(
     (set, get) => ({
       balance: 0,
       currency: { rates: [], lastFetched: 0 },
+      isLoadingCurrency: false,
 
       setBalance: (value) => set({ balance: value }),
 
