@@ -8,6 +8,13 @@ import Image from "next/image";
 const Currency = () => {
   const { rates, loading, error } = useCurrency();
 
+  const usd = rates.find(
+    (r) => r.currencyCodeA === 840 && r.currencyCodeB === 980,
+  );
+  const eur = rates.find(
+    (r) => r.currencyCodeA === 978 && r.currencyCodeB === 980,
+  );
+
   if (loading) return <Loader />;
   if (error) return <p className={styles.error}>Failed to load currency</p>;
 
@@ -23,15 +30,20 @@ const Currency = () => {
 
         {/* Rows */}
         <div className={styles.body}>
-          {rates.map((rate) => (
-            <div key={rate.currencyCodeA} className={styles.row}>
-              <span className={styles.currency}>
-                {rate.currencyCodeA === 840 ? "USD" : "EUR"}
-              </span>
-              <span>{rate.rateBuy?.toFixed(2)}</span>
-              <span>{rate.rateSell?.toFixed(2)}</span>
+          {usd && (
+            <div className={styles.row}>
+              <span className={styles.currency}>USD</span>
+              <span>{usd.rateBuy?.toFixed(2)}</span>
+              <span>{usd.rateSell?.toFixed(2)}</span>
             </div>
-          ))}
+          )}
+          {eur && (
+            <div className={styles.row}>
+              <span className={styles.currency}>EUR</span>
+              <span>{eur.rateBuy?.toFixed(2)}</span>
+              <span>{eur.rateSell?.toFixed(2)}</span>
+            </div>
+          )}
         </div>
 
         {/* Illustration */}

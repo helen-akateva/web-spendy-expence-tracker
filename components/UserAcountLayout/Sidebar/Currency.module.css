@@ -56,6 +56,7 @@
 .table td {
 	text-align: center;
 }
+
 .table td:first-child {
 	padding-right: 66px;
 }
@@ -72,6 +73,7 @@
 .table tr:last-child th {
 	padding-top: 29px;
 }
+
 .imgWrapper {
 	position: relative;
 	width: 234px;
@@ -83,33 +85,39 @@
 	object-fit: contain;
 }
 
-@media (min-width: 744px) {
+@media (min-width: 768px) {
 	.currencyContainer {
 		width: 336px;
 		height: 310px;
 		padding: 16px;
 	}
+
 	.header {
 		width: 304px;
 		font-size: 16px;
 		padding: 16px;
 	}
+
 	.table {
 		font-size: 16px;
 		padding-left: 44px;
 	}
+
 	.tableWrapper {
 		width: 304px;
 		font-size: 16px;
 	}
+
 	.imgWrapper {
 		width: 181px;
 		height: 135px;
 		margin-top: 9px;
 	}
+
 	.table {
 		padding-left: 0px;
 	}
+
 	.table td:first-child {
 		padding-right: 70px;
 	}
@@ -129,13 +137,16 @@
 		padding: 0px 8px;
 		background: none;
 	}
+
 	.header {
 		width: 400px;
 		font-size: 16px;
 	}
+
 	.table {
 		font-size: 16px;
 	}
+
 	.tableWrapper {
 		width: 400px;
 	}
@@ -145,9 +156,11 @@
 		height: 166px;
 		margin-top: 21px;
 	}
+
 	.table {
 		padding-left: 0px;
 	}
+
 	.table td:first-child {
 		padding-right: 117px;
 	}
