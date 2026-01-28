@@ -1,134 +1,162 @@
 .currencyContainer {
-  position: relative;
-  border-radius: 16px;
-  padding: 16px;
-  width: 288px;
-  height: 390px;
-  background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
+	display: flex;
+	flex-direction: column;
+	border-radius: 16px;
+	padding: 16px;
+	width: 288px;
+	height: 390px;
+	background: linear-gradient(180deg, #355359 0%, #3b5d63 100%);
 }
 
 .header {
-  display: flex;
-  border-radius: 12px;
-  padding: 16px 32px;
-  width: 304px;
-  height: 51px;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  gap: 30.5px;
-  color: var(--main-white);
-  background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+	border-radius: 12px;
+	gap: 37.5px;
+	padding: 12px;
+	width: 256px;
+	height: 51px;
+	font-family: var(--font-family);
+	font-weight: 600;
+	font-size: 14px;
+	color: var(--main-white);
+	background: linear-gradient(180deg, #294045 0%, #1e2f33 100%);
 }
 
 .header div {
-  flex: 1;
-  text-align: center;
+	flex: 1;
+	text-align: center;
 }
 
 .header div:first-child {
-  text-align: left;
+	text-align: left;
 }
 
 .tableWrapper {
-  width: 304px;
-  margin: 0 auto;
+	width: 256px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-left: 12px;
+	padding-right: 12px;
 }
 
 .table {
-  width: 100%;
-  border-spacing: 0;
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--main-white);
+	padding-top: 16px;
+	padding-left: 29px;
+	border-spacing: 0;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 14px;
+	color: var(--main-white);
 }
 
 .table td {
-  padding: 16px 32px;
-  text-align: center;
+	text-align: center;
 }
-
 .table td:first-child {
-  text-align: left;
+	padding-right: 66px;
 }
 
-.table tr {
-  height: 51px;
+.table td:nth-child(2) {
+	padding-right: 47px;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  color: var(--main-white);
-  font-family: var(--font-family);
-  font-size: 16px;
+.table td:last-child {
+	padding-right: 0;
 }
 
-@media (min-width: 768px) {
-  .currencyContainer {
-    max-width: 336px;
-    width: 336px;
-    height: 310px;
-  }
+.table tr:last-child td,
+.table tr:last-child th {
+	padding-top: 29px;
+}
+.imgWrapper {
+	position: relative;
+	width: 234px;
+	height: 174px;
+	margin-top: 32px;
+}
 
-  .wrapper {
-    display: initial;
-    padding: 0;
-  }
+.img {
+	object-fit: contain;
+}
 
-  .illustration {
-    margin-top: 9px;
-    width: 181px;
-    height: 135px;
-    margin: 0 auto;
-  }
+@media (min-width: 744px) {
+	.currencyContainer {
+		width: 336px;
+		height: 310px;
+		padding: 16px;
+	}
+	.header {
+		width: 304px;
+		font-size: 16px;
+		padding: 16px;
+	}
+	.table {
+		font-size: 16px;
+		padding-left: 44px;
+	}
+	.tableWrapper {
+		width: 304px;
+		font-size: 16px;
+	}
+	.imgWrapper {
+		width: 181px;
+		height: 135px;
+		margin-top: 9px;
+	}
+	.table {
+		padding-left: 0px;
+	}
+	.table td:first-child {
+		padding-right: 70px;
+	}
+
+	.table td:nth-child(2) {
+		padding-right: 62px;
+	}
+
+	.table td:last-child {
+		padding-right: 0;
+	}
 }
 
 @media (min-width: 1280px) {
-  .header {
-    max-width: 400px;
-  }
+	.currencyContainer {
+		width: 400px;
+		padding: 0px 8px;
+		background: none;
+	}
+	.header {
+		width: 400px;
+		font-size: 16px;
+	}
+	.table {
+		font-size: 16px;
+	}
+	.tableWrapper {
+		width: 400px;
+	}
 
-  .currencyContainer {
-    max-width: 400px;
-    width: 400px;
-    background: transparent;
-    margin: 0 auto;
-  }
+	.imgWrapper {
+		width: 222px;
+		height: 166px;
+		margin-top: 21px;
+	}
+	.table {
+		padding-left: 0px;
+	}
+	.table td:first-child {
+		padding-right: 117px;
+	}
 
-  .wrapper {
-    display: initial;
-    padding: 0;
-  }
+	.table td:nth-child(2) {
+		padding-right: 91px;
+	}
 
-  .illustration {
-    margin: 0 auto;
-    margin-top: 21px;
-    width: 222px;
-    height: 166px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .currencyContainer {
-    width: 448px;
-    height: 354px;
-    background: none;
-    padding: 0;
-    border-radius: 0;
-    gap: 12px;
-  }
-
-  .header {
-    width: 400px;
-  }
-
-  .tableWrapper {
-    width: 400px;
-  }
+	.table td:last-child {
+		padding-right: 0;
+	}
 }

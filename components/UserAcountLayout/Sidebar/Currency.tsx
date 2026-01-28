@@ -48,14 +48,14 @@ const Currency = () => {
             )}
           </tbody>
         </table>
-        {/* Illustration */}
-        <div className={styles.illustration}>
+
+        <div className={styles.imgWrapper}>
           <Image
-            src="/images/dude1x.webp"
-            alt="Wallet"
-            width={234}
-            height={174}
-            priority
+            src="/images/dude2x.webp"
+            alt="Hero"
+            fill // заполняет контейнер
+            className={styles.img}
+            priority // если картинка важная (LCP)
           />
         </div>
       </div>
